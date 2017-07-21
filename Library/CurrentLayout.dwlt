@@ -42,10 +42,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 768, y: 492}
+  m_MinSize: {x: 683, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 0
-  controlID: 115
+  controlID: 9
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -64,15 +64,15 @@ MonoBehaviour:
     y: 0
     width: 389
     height: 947
-  m_MinSize: {x: 362, y: 411}
-  m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 13}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
   - {fileID: 13}
   - {fileID: 12}
-  m_Selected: 1
-  m_LastSelected: 2
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 997
-  m_MinSize: {x: 950, y: 542}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &7
 MonoBehaviour:
@@ -388,7 +388,7 @@ MonoBehaviour:
   m_LastProjectPath: E:\Game Projects\CrabMeat
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
+    scrollPos: {x: 0, y: 95}
     m_SelectedIDs: 62260000
     m_LastClickedID: 9826
     m_ExpandedIDs: 000000000c2600004a2600005c260000642600007c260000902600000027000000ca9a3bffffff7f
@@ -447,7 +447,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: 
+    m_ExpandedInstanceIDs: 50270000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -535,9 +535,9 @@ MonoBehaviour:
     height: 552
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
+    m_SelectedIDs: 52270000
     m_LastClickedID: 0
-    m_ExpandedIDs: a02effff14d3ffff6adbffffeae6ffff88f7ffffccf9ffff1afcffff00000000
+    m_ExpandedIDs: 6ab6feff2ccbfeff0cf1feff7822ffff3cb8ffff90bcffffe0e9ffff20ecffff8aefffff1afcffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -587,14 +587,14 @@ MonoBehaviour:
     width: 1148
     height: 552
   m_SceneLighting: 1
-  lastFramingTime: 821.3769356499749
+  lastFramingTime: 974.35749792389
   m_2DMode: 0
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.266668, y: 0.06666699, z: 0.200001}
+    m_Target: {x: -25.592672, y: -6.1858273, z: -2.5756686}
     speed: 2
-    m_Value: {x: 0.266668, y: 0.06666699, z: 0.200001}
+    m_Value: {x: -25.592672, y: -6.1858273, z: -2.5756686}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -617,18 +617,18 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.42884544, y: 0.42763314, z: -0.24190825, w: -0.758091}
+    m_Target: {x: 0.30576324, y: -0.6942351, z: 0.46162885, w: 0.45983186}
     speed: 2
-    m_Value: {x: -0.42884544, y: 0.42763314, z: -0.24190825, w: -0.758091}
+    m_Value: {x: 0.30576324, y: -0.6942351, z: 0.46162885, w: 0.45983186}
   m_Size:
-    m_Target: 7.6900225
+    m_Target: 22
     speed: 2
-    m_Value: 7.6900225
+    m_Value: 22
   m_Ortho:
     m_Target: 0
     speed: 2
     m_Value: 0
-  m_LastSceneViewRotation: {x: 0, y: 0, z: 0, w: 0}
+  m_LastSceneViewRotation: {x: -0.3641489, y: 0.22061865, z: -0.08922261, w: -0.90042347}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
