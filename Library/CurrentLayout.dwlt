@@ -379,18 +379,18 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Objects/UI
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Objects/UI
   m_LastFoldersGridSize: -1
   m_LastProjectPath: E:\Game Projects\CrabMeat
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 95}
-    m_SelectedIDs: 62260000
-    m_LastClickedID: 9826
+    scrollPos: {x: 0, y: 85}
+    m_SelectedIDs: 4a260000
+    m_LastClickedID: 9802
     m_ExpandedIDs: 000000000c2600004a2600005c260000642600007c260000902600000027000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -535,23 +535,23 @@ MonoBehaviour:
     height: 552
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 52270000
-    m_LastClickedID: 0
-    m_ExpandedIDs: 6ab6feff2ccbfeff0cf1feff7822ffff3cb8ffff90bcffffe0e9ffff20ecffff8aefffff1afcffff00000000
+    m_SelectedIDs: 6ca9fdff
+    m_LastClickedID: -153236
+    m_ExpandedIDs: a2a3fefff4fbfefff6c8ffff1afcffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: DropShell_Button
+      m_OriginalName: DropShell_Button
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: -16950
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 4}
     m_SearchString: 
@@ -587,14 +587,14 @@ MonoBehaviour:
     width: 1148
     height: 552
   m_SceneLighting: 1
-  lastFramingTime: 974.35749792389
+  lastFramingTime: 2041.7995606740203
   m_2DMode: 0
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -25.592672, y: -6.1858273, z: -2.5756686}
+    m_Target: {x: 998.12555, y: 244.28687, z: -14.08374}
     speed: 2
-    m_Value: {x: -25.592672, y: -6.1858273, z: -2.5756686}
+    m_Value: {x: 998.12555, y: 244.28687, z: -14.08374}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -617,13 +617,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.30576324, y: -0.6942351, z: 0.46162885, w: 0.45983186}
+    m_Target: {x: -0.32940733, y: 0.05687077, z: -0.019881805, w: -0.9422639}
     speed: 2
-    m_Value: {x: 0.30576324, y: -0.6942351, z: 0.46162885, w: 0.45983186}
+    m_Value: {x: -0.32940733, y: 0.05687077, z: -0.019881805, w: -0.9422639}
   m_Size:
-    m_Target: 22
+    m_Target: 2739.8394
     speed: 2
-    m_Value: 22
+    m_Value: 2739.8394
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -663,15 +663,15 @@ MonoBehaviour:
   m_MaximizeOnPlay: 0
   m_Gizmos: 0
   m_Stats: 0
-  m_SelectedSizes: 04000000000000000000000000000000000000000000000000000000000000000000000000000000
+  m_SelectedSizes: 07000000000000000000000000000000000000000000000000000000000000000000000000000000
   m_TargetDisplay: 0
   m_ZoomArea:
     m_HRangeLocked: 0
     m_VRangeLocked: 0
-    m_HBaseRangeMin: -428
-    m_HBaseRangeMax: 428
-    m_VBaseRangeMin: -267.5
-    m_VBaseRangeMax: 267.5
+    m_HBaseRangeMin: -960
+    m_HBaseRangeMax: 960
+    m_VBaseRangeMin: -540
+    m_VBaseRangeMax: 540
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -690,7 +690,7 @@ MonoBehaviour:
       y: 17
       width: 1148
       height: 535
-    m_Scale: {x: 1, y: 1}
+    m_Scale: {x: 0.49537036, y: 0.49537036}
     m_Translation: {x: 574, y: 267.5}
     m_MarginLeft: 0
     m_MarginRight: 0
@@ -698,12 +698,12 @@ MonoBehaviour:
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -574
-      y: -267.5
-      width: 1148
-      height: 535
+      x: -1158.729
+      y: -540
+      width: 2317.458
+      height: 1080
     m_MinimalGUI: 1
-  m_defaultScale: 1
+  m_defaultScale: 0.49537036
   m_TargetTexture: {fileID: 0}
   m_CurrentColorSpace: 0
   m_LastWindowPixelSize: {x: 1148, y: 552}
