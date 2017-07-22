@@ -78,8 +78,11 @@ public class LoadLevel : MonoBehaviour {
 							currentObject = null;
 							break;
 						}
-						if(currentObject != null)
+						if (currentObject != null) 
+						{
 							Instantiate (currentObject, new Vector3 (xChange, transform.position.y, zChange), Quaternion.identity);
+							currentObject.transform.localScale = new Vector3 (objectSize, objectSize, objectSize);
+						}
 					}
 
 					//Layer 2 is for the walls,player,enemies etc..
@@ -97,9 +100,13 @@ public class LoadLevel : MonoBehaviour {
 							currentObject = null;
 							break;
 						}
-						if(currentObject != null)
+						if (currentObject != null) 
+						{
 							Instantiate (currentObject, new Vector3 (xChange, transform.position.y + objectSize, zChange), Quaternion.identity);
+							currentObject.transform.localScale = new Vector3 (objectSize, objectSize, objectSize);
+						}
 					}
+
 					//move x axis to the next instantiate location
 					xChange += objectSize;
 				}
