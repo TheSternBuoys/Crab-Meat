@@ -12,6 +12,7 @@ public class LoadLevel : MonoBehaviour {
 	public GameObject atlantisGround;
     public GameObject BoulderObstacle;
     public GameObject WaterSpout;
+    public GameObject SandGroundPortal;
 
 
     public int level;
@@ -79,6 +80,9 @@ public class LoadLevel : MonoBehaviour {
 							break;
                         case "WS":
                             currentObject = WaterSpout;
+                             break;
+                        case "SP":
+                            currentObject = SandGroundPortal;
                             break;
                             default:
 							currentObject = null;
