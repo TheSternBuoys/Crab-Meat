@@ -80,8 +80,8 @@ public class LoadLevel : MonoBehaviour {
 						}
 						if (currentObject != null) 
 						{
-							Instantiate (currentObject, new Vector3 (xChange, transform.position.y, zChange), Quaternion.identity);
 							currentObject.transform.localScale = new Vector3 (objectSize, objectSize, objectSize);
+							Instantiate (currentObject, new Vector3 (xChange, transform.position.y, zChange), Quaternion.identity);
 						}
 					}
 
@@ -102,8 +102,8 @@ public class LoadLevel : MonoBehaviour {
 						}
 						if (currentObject != null) 
 						{
-							Instantiate (currentObject, new Vector3 (xChange, transform.position.y + objectSize, zChange), Quaternion.identity);
 							currentObject.transform.localScale = new Vector3 (objectSize, objectSize, objectSize);
+							Instantiate (currentObject, new Vector3 (xChange, transform.position.y + objectSize, zChange), Quaternion.identity);
 						}
 					}
 
