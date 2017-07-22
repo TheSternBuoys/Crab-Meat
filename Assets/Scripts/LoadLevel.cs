@@ -11,6 +11,7 @@ public class LoadLevel : MonoBehaviour {
 	public GameObject reefGround;
 	public GameObject atlantisGround;
     public GameObject BoulderObstacle;
+    public GameObject WaterSpout;
 
 
     public int level;
@@ -76,6 +77,9 @@ public class LoadLevel : MonoBehaviour {
 						case "RG":
 							currentObject = atlantisGround;
 							break;
+                        case "WS":
+                            currentObject = WaterSpout;
+                            break;
                             default:
 							currentObject = null;
 							break;
