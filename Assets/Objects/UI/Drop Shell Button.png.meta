@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: bc7cc000e05d58c4cbf45740f0b146fc
-timeCreated: 1500647850
+timeCreated: 1500696399
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -44,7 +44,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 0, y: 36, z: 0, w: 32}
   spritePixelsToUnits: 100
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -98,7 +98,11 @@ TextureImporter:
   spriteSheet:
     serializedVersion: 2
     sprites: []
-    outline: []
+    outline:
+    - - {x: -63, y: -29}
+      - {x: 63, y: -29}
+      - {x: 63, y: 33}
+      - {x: -63, y: 33}
     physicsShape: []
   spritePackingTag: 
   userData: 
