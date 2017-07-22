@@ -10,8 +10,10 @@ public class LoadLevel : MonoBehaviour {
 	public GameObject sandGround;
 	public GameObject reefGround;
 	public GameObject atlantisGround;
+    public GameObject BoulderObstacle;
 
-	public int level;
+
+    public int level;
 	public float objectSize;
 
 	GameObject currentObject;
@@ -74,10 +76,14 @@ public class LoadLevel : MonoBehaviour {
 						case "RG":
 							currentObject = atlantisGround;
 							break;
-						default:
+                            default:
 							currentObject = null;
 							break;
-						}
+                            
+
+
+
+                        }
 						if (currentObject != null) 
 						{
 							currentObject.transform.localScale = new Vector3 (objectSize, objectSize, objectSize);
@@ -96,7 +102,10 @@ public class LoadLevel : MonoBehaviour {
 						case "P":
 							currentObject = player;
 							break;
-						default:
+                        case "BO":
+                            currentObject = BoulderObstacle;
+                            break;
+                            default:
 							currentObject = null;
 							break;
 						}
