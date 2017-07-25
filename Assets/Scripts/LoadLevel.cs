@@ -13,10 +13,9 @@ public class LoadLevel : MonoBehaviour {
     public GameObject BoulderObstacle;
     public GameObject WaterSpout;
     public GameObject SandGroundPortal;
-
+	public GameObject grass;
 
     public int level;
-	public float objectSize;
 
 	GameObject currentObject;
 	string baseText;
@@ -57,7 +56,7 @@ public class LoadLevel : MonoBehaviour {
 
 				//Reseting x for new line and moving z axis to apply the next line
 				xChange = 0;
-				zChange += objectSize;
+				zChange -= 1f;
 				//2nd Nested for loop reads each value in the line selected in the 1st for loop
 				for (int x = 0; x < lineData.Length; x++) 
 				{
@@ -84,7 +83,7 @@ public class LoadLevel : MonoBehaviour {
                         case "SP":
                             currentObject = SandGroundPortal;
                             break;
-                            default:
+                        default:
 							currentObject = null;
 							break;
                             
@@ -94,8 +93,7 @@ public class LoadLevel : MonoBehaviour {
                         }
 						if (currentObject != null) 
 						{
-							currentObject.transform.localScale = new Vector3 (objectSize, objectSize, objectSize);
-							Instantiate (currentObject, new Vector3 (xChange*15, transform.position.y, zChange*15), Quaternion.identity);
+							Instantiate (currentObject, new Vector3 (xChange, transform.position.y, zChange), Quaternion.identity);
 						}
 					}
 
@@ -113,19 +111,21 @@ public class LoadLevel : MonoBehaviour {
                         case "BO":
                             currentObject = BoulderObstacle;
                             break;
-                            default:
+						case "G":
+							currentObject = grass;
+							break;
+                         default:
 							currentObject = null;
 							break;
 						}
 						if (currentObject != null) 
 						{
-							currentObject.transform.localScale = new Vector3 (objectSize, objectSize, objectSize);
-							Instantiate (currentObject, new Vector3 (xChange*15, transform.position.y + objectSize*15, zChange*15), Quaternion.identity);
+							Instantiate (currentObject, new Vector3 (xChange, transform.position.y + 1f, zChange), Quaternion.identity);
 						}
 					}
 
 					//move x axis to the next instantiate location
-					xChange += objectSize;
+					xChange += 1f;
 				}
 			}
 		}

@@ -1,7 +1,7 @@
 # MagicaVoxel @ Ephtracy
 
 # material
-mtllib Sand_Ground.mtl
+mtllib testo.mtl
 usemtl palette
 
 # normals
