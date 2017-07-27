@@ -31,6 +31,11 @@ public class SceneController : MonoBehaviour {
         Application.LoadLevel("Level 1");
     }
 
+    public void LoadIntroCutscene()
+    {
+        Application.LoadLevel("Intro");
+    }
+
     public void Retry()
     {
         Application.LoadLevel(Application.loadedLevel);
