@@ -83,8 +83,11 @@ public class LoadLevel : MonoBehaviour {
                             break;
                         case "SBH":
                             currentObject = SandBoulderHole;
+                                break;
+                        case "#":
+                            currentObject = wall;
                             break;
-                            default:
+                        default:
 							currentObject = null;
 							break;
                             
