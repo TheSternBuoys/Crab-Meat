@@ -11,9 +11,10 @@ public class LoadLevel : MonoBehaviour {
 	public GameObject reefGround;
 	public GameObject atlantisGround;
     public GameObject BoulderObstacle;
-    public GameObject WaterSpout;
+    public GameObject PressuePlate;
     public GameObject SandGroundPortal;
 	public GameObject grass;
+    public GameObject SandBoulderHole;
 
     public int level;
 
@@ -77,13 +78,13 @@ public class LoadLevel : MonoBehaviour {
 						case "RG":
 							currentObject = atlantisGround;
 							break;
-                        case "WS":
-                            currentObject = WaterSpout;
-                             break;
                         case "SP":
                             currentObject = SandGroundPortal;
                             break;
-                        default:
+                        case "SBH":
+                            currentObject = SandBoulderHole;
+                            break;
+                            default:
 							currentObject = null;
 							break;
                             
@@ -114,7 +115,10 @@ public class LoadLevel : MonoBehaviour {
 						case "G":
 							currentObject = grass;
 							break;
-                         default:
+                        case "PP":
+                            currentObject = PressuePlate;
+                            break;
+                            default:
 							currentObject = null;
 							break;
 						}
