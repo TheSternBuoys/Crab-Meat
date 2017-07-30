@@ -19,6 +19,7 @@ public class LoadLevel : MonoBehaviour {
     public int level;
 
 	GameObject currentObject;
+	GameObject stringObject;
 	string baseText;
 	string[] lines;
 	string[] lineData;
@@ -42,7 +43,8 @@ public class LoadLevel : MonoBehaviour {
 		{
 			//Reads in the CSV and splits the lines into seperate values
 			layerString = layer.ToString (layerString);
-			baseText = File.ReadAllText ("Assets/CsvFiles/level" + levelString + "-" + layerString + ".csv");
+			StreamReader reader = new StreamReader (new MemoryStream ((Resources.Load ("Level" + levelString + "-" + layerString) as TextAsset).bytes));
+			baseText = reader.ReadToEnd();
 			layerString = "";
 			lines = baseText.Split("\n"[0]);
 
