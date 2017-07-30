@@ -7,8 +7,10 @@ public class Player : MonoBehaviour {
 	public float distanceToMove;
 	public float moveSpeed;
 	public float distance;
+	public float turntTimer;
 	public LayerMask mask;
 	public LayerMask destructable;
+	public GameController gameController;
 
 	private bool moveToEnd = false;
 	private Vector3 endPosition;
@@ -19,6 +21,8 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+		gameController = GameObject.FindWithTag ("GameController").GetComponent<GameController> ();
+		turntTimer = gameController.startingTimer;
 		endPosition = transform.position;
 	}
 	
@@ -33,39 +37,47 @@ public class Player : MonoBehaviour {
 
 	void Update()
 	{
-		if (Input.GetKeyDown (KeyCode.UpArrow)) 
+		if (gameController.playersTurn == true) 
 		{
-			if (Physics.Raycast (transform.position, transform.forward, distance, mask) == false) 
+			if (Input.GetKeyDown (KeyCode.UpArrow)) 
 			{
-				endPosition = new Vector3 (endPosition.x, endPosition.y, endPosition.z + distanceToMove);
-				moveToEnd = true;
+				if (Physics.Raycast (transform.position, transform.forward, distance, mask) == false) 
+				{
+					Movement (endPosition.x, endPosition.z + distanceToMove);
+				}
+			} 
+			else if (Input.GetKeyDown (KeyCode.DownArrow)) 
+			{
+				if (Physics.Raycast (transform.position, transform.forward * -1f, distance, mask) == false) {
+					Movement (endPosition.x, endPosition.z - distanceToMove);
+				}
+			} 
+			else if (Input.GetKeyDown (KeyCode.RightArrow)) 
+			{
+				if (Physics.Raycast (transform.position, transform.right, distance, mask) == false) {
+					Movement (endPosition.x + distanceToMove, endPosition.z);
+				}
+			} 
+			else if (Input.GetKeyDown (KeyCode.LeftArrow)) 
+			{
+				if (Physics.Raycast (transform.position, transform.right * -1f, distance, mask) == false) {
+					Movement (endPosition.x - distanceToMove, endPosition.z);
+				}
 			}
 		}
-		else if (Input.GetKeyDown (KeyCode.DownArrow)) 
-		{
-			if (Physics.Raycast (transform.position, transform.forward * -1f, distance, mask) == false) 
-			{
-				endPosition = new Vector3 (endPosition.x, endPosition.y, endPosition.z - distanceToMove);
-				moveToEnd = true;
-			}
-		}
-		else if (Input.GetKeyDown (KeyCode.RightArrow)) 
-		{
-			if (Physics.Raycast (transform.position, transform.right, distance, mask) == false) 
-			{
-				endPosition = new Vector3 (endPosition.x + distanceToMove, endPosition.y, endPosition.z);
-				moveToEnd = true;
-			}
+	}
 
-		}
-		else if (Input.GetKeyDown (KeyCode.LeftArrow)) 
-		{
-			if (Physics.Raycast (transform.position, transform.right * -1f, distance, mask) == false) 
-			{
-				endPosition = new Vector3 (endPosition.x - distanceToMove, endPosition.y, endPosition.z);
-				moveToEnd = true;
-			}
-		}
+	public void Movement(float x, float z)
+	{
+		endPosition = new Vector3 (x, endPosition.y, z);
+		moveToEnd = true;
+		gameController.nextTurn ();
+	}
+
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.tag == "Hazard")
+			Destroy (gameObject);
 	}
 
 	/*if (Physics.Raycast (ray, out hit, distance)) 
