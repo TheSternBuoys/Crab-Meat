@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 
@@ -18,11 +19,39 @@ public class Player : MonoBehaviour {
 	Ray ray;
 	RaycastHit hit;
 
-	// Use this for initialization
-	void Start () 
+    //Placeholder for next level stuff
+    string SceneName;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        print("triggered");
+
+        if (SceneName == "Level 1")
+        {
+            Application.LoadLevel("Level 2");
+        }
+
+        else if (SceneName == "Level 2")
+        {
+            Application.LoadLevel("Level 3");
+        }
+
+        else if (SceneName == "Level 3")
+        {
+            Application.LoadLevel("Main Menu");
+        }
+    }
+
+    // Use this for initialization
+    void Start () 
 	{
 		endPosition = transform.position;
-	}
+
+        //Placeholder for next level stuff
+        Scene CurrentScene = SceneManager.GetActiveScene();
+        SceneName = CurrentScene.name;
+
+    }
 	
 	// Update is called once per frame
 	void FixedUpdate () 
@@ -117,6 +146,8 @@ public class Player : MonoBehaviour {
             print("Input");
             print(horizontal);
         }
+
+
 	}
 
 	/*if (Physics.Raycast (ray, out hit, distance)) 
