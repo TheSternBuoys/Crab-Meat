@@ -27,21 +27,21 @@ public class Player : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         print("triggered");
-
-        if (SceneName == "Level 1")
-        {
-            Application.LoadLevel("Level 2");
-        }
-
-        else if (SceneName == "Level 2")
-        {
-            Application.LoadLevel("Level 3");
-        }
-
-        else if (SceneName == "Level 3")
-        {
-            Application.LoadLevel("Main Menu");
-        }
+		if (other.gameObject.tag == "Portal") 
+		{
+			if (SceneName == "Level 1") 
+			{
+				Application.LoadLevel ("Level 2");
+			} 
+			else if (SceneName == "Level 2") 
+			{
+				Application.LoadLevel ("Level 3");
+			} 
+			else if (SceneName == "Level 3") 
+			{
+				Application.LoadLevel ("Main Menu");
+			}
+		}
     }
 
     // Use this for initialization
@@ -64,13 +64,14 @@ public class Player : MonoBehaviour {
 		{
 			transform.position = Vector3.MoveTowards (transform.position, endPosition, moveSpeed * Time.deltaTime);
 		}
+
 	}
 
 	void Update()
 	{
-<<<<<<< HEAD
+
 		if (gameController.playersTurn == true) 
-=======
+		{
         int horizontal = 0;     //Used to store the horizontal move direction.
         int vertical = 0;       //Used to store the vertical move direction.
 
@@ -113,12 +114,10 @@ public class Player : MonoBehaviour {
 
 #endif
 
-        if (vertical == 1) 
->>>>>>> cc252d5fa58834ccc68ee34de5d6748089a118f7
-		{
+     
+				/*
 			if (Input.GetKeyDown (KeyCode.UpArrow)) 
 			{
-<<<<<<< HEAD
 				if (Physics.Raycast (transform.position, transform.forward, distance, mask) == false) 
 				{
 					Movement (endPosition.x, endPosition.z + distanceToMove);
@@ -137,48 +136,43 @@ public class Player : MonoBehaviour {
 				}
 			} 
 			else if (Input.GetKeyDown (KeyCode.LeftArrow)) 
-=======
+			{
 				endPosition = new Vector3 (endPosition.x, endPosition.y, endPosition.z + distanceToMove);
 				moveToEnd = true;
-			}
-            print("Input");
-            print(vertical);
+			}*/
+
+		if (vertical == 1) 
+			//if(Input.GetKeyDown(KeyCode.UpArrow))
+		{
+			if (Physics.Raycast (transform.position, transform.forward, distance, mask) == false)
+				{
+					Movement (endPosition.x, endPosition.z + distanceToMove);
+				}
 		}
 		else if (vertical == -1) 
+			//if(Input.GetKeyDown(KeyCode.DownArrow))
 		{
 			if (Physics.Raycast (transform.position, transform.forward * -1f, distance, mask) == false) 
 			{
-				endPosition = new Vector3 (endPosition.x, endPosition.y, endPosition.z - distanceToMove);
-				moveToEnd = true;
+				Movement (endPosition.x, endPosition.z - distanceToMove);
 			}
-            print("Input");
-            print(vertical);
         }
 		else if (horizontal == 1) 
 		{
 			if (Physics.Raycast (transform.position, transform.right, distance, mask) == false) 
 			{
-				endPosition = new Vector3 (endPosition.x + distanceToMove, endPosition.y, endPosition.z);
-				moveToEnd = true;
+				Movement (endPosition.x + distanceToMove, endPosition.z);
 			}
-            print("Input");
-            print(horizontal);
         }
 		else if (horizontal == -1) 
 		{
 			if (Physics.Raycast (transform.position, transform.right * -1f, distance, mask) == false) 
->>>>>>> cc252d5fa58834ccc68ee34de5d6748089a118f7
 			{
-				if (Physics.Raycast (transform.position, transform.right * -1f, distance, mask) == false) {
-					Movement (endPosition.x - distanceToMove, endPosition.z);
-				}
+				Movement (endPosition.x - distanceToMove, endPosition.z);
 			}
-            print("Input");
-            print(horizontal);
         }
-
-
 	}
+}
 
 	public void Movement(float x, float z)
 	{
@@ -187,11 +181,11 @@ public class Player : MonoBehaviour {
 		gameController.nextTurn ();
 	}
 
-	void OnTriggerEnter(Collider other)
+	/*void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.tag == "Hazard")
 			Destroy (gameObject);
-	}
+	}*/
 
 	/*if (Physics.Raycast (ray, out hit, distance)) 
 	Ray ray = new Ray (transform.position,transform.forward);
