@@ -72,26 +72,25 @@ public class LoadLevel : MonoBehaviour {
 					{
 						switch (lineData [x]) 
 						{
-						case "SG":
+                        case "#":
+                            currentObject = wall;
+                            break;
+                        case "SG":
 							currentObject = sandGround;
 							break;
                         case "AG":
                             currentObject = AtlanteanGround;
                             break;
-
                         case "SP":
                             currentObject = SandGroundPortal;
                             break;
                         case "SBH":
                             currentObject = SandBoulderHole;
                                 break;
-                        case "#":
-                            currentObject = wall;
-                            break;
                         case "!#":
                             currentObject = AtlanteanWall;
                             break;
-                            case "GT":
+                        case "GT":
                             currentObject = GroundTrap;
                             break;
                         default:
@@ -119,7 +118,7 @@ public class LoadLevel : MonoBehaviour {
                         case "!#":
                             currentObject = AtlanteanWall;
                             break;
-                            case "P":
+                        case "P":
 							currentObject = player;
 							break;
                         case "BO":
@@ -131,7 +130,7 @@ public class LoadLevel : MonoBehaviour {
                         case "PP":
                             currentObject = PressurePlate;
                             break;
-                            default:
+                        default:
 							currentObject = null;
 							break;
 						}

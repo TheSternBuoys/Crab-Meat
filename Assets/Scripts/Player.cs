@@ -13,6 +13,8 @@ public class Player : MonoBehaviour {
 	public LayerMask destructable;
 	public GameController gameController;
     public string playerDirection;
+    public GameObject shell;
+    public bool shellMode;
 
     RaycastHit hit;
     Vector3 rayCastDirection;
@@ -113,68 +115,6 @@ public class Player : MonoBehaviour {
 
 #if UNITY_STANDALONE || UNITY_WEBPLAYER
 
-#else
-            //Touch
-
-            if (Input.touchCount > 0)
-        {
-            Touch myTouch = Input.touches[0];
-
-            if (myTouch.phase == TouchPhase.Began)
-            {
-                touchOrigin = myTouch.position;
-            }
-
-            else if (myTouch.phase == TouchPhase.Ended && touchOrigin.x >= 0)
-            {
-                Vector2 touchEnd = myTouch.position;
-                float x = touchEnd.x - touchOrigin.x;
-                float y = touchEnd.y - touchOrigin.y;
-                touchOrigin.x = -1;
-                if (Mathf.Abs(x) > Mathf.Abs(y))
-                {
-                    horizontal = x > 0 ? 1 : -1;
-                }
-
-                else
-                {
-                    vertical = y > 0 ? 1 : -1;
-                }
-            }
-        }
-
-			if (vertical == 1)
-			{
-			if (Physics.Raycast (transform.position, transform.forward, distance, mask) == false)
-			{
-			Movement (endPosition.x, endPosition.z + distanceToMove);
-			}
-			}
-			else if (vertical == -1) 
-			if(Input.GetKeyDown(KeyCode.DownArrow))
-			{
-			if (Physics.Raycast (transform.position, transform.forward * -1f, distance, mask) == false) 
-			{
-			Movement (endPosition.x, endPosition.z - distanceToMove);
-			}
-			}
-			else if (horizontal == 1) 
-			{
-			if (Physics.Raycast (transform.position, transform.right, distance, mask) == false) 
-			{
-			Movement (endPosition.x + distanceToMove, endPosition.z);
-			}
-			}
-			else if (horizontal == -1) 
-			{
-			if (Physics.Raycast (transform.position, transform.right * -1f, distance, mask) == false) 
-			{
-			Movement (endPosition.x - distanceToMove, endPosition.z);
-			}
-			}
-
-#endif
-
             //keycode
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
@@ -224,16 +164,105 @@ public class Player : MonoBehaviour {
                     hit.transform.SendMessageUpwards("TestCollision", rayCastDirection);
                 }
             }*/
-            
+
+#else
+            //Touch
+
+            if (Input.touchCount > 0)
+        {
+            Touch myTouch = Input.touches[0];
+
+            if (myTouch.phase == TouchPhase.Began)
+            {
+                touchOrigin = myTouch.position;
+            }
+
+            else if (myTouch.phase == TouchPhase.Ended && touchOrigin.x >= 0)
+            {
+                Vector2 touchEnd = myTouch.position;
+                float x = touchEnd.x - touchOrigin.x;
+                float y = touchEnd.y - touchOrigin.y;
+                touchOrigin.x = -1;
+                if (Mathf.Abs(x) > Mathf.Abs(y))
+                {
+                    horizontal = x > 0 ? 1 : -1;
+                }
+
+                else
+                {
+                    vertical = y > 0 ? 1 : -1;
+                }
+            }
+        }
+
+			if (vertical == 1)
+			{
+                transform.localEulerAngles = new Vector3(0, 180, 0);
+                playerDirection = "up";
+                rayCastDirection = new Vector3(0, 0, 1);
+                if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == false)
+                {
+                    Movement(endPosition.x, endPosition.z + distanceToMove);
+                }
+			}
+			else if (vertical == -1) 
+                transform.localEulerAngles = new Vector3(0, 0, 0);
+                playerDirection = "down";
+                rayCastDirection = new Vector3(0, 0, -1);
+                if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == false)
+                {
+                    Movement(endPosition.x, endPosition.z - distanceToMove);
+                }
+			}
+			else if (horizontal == 1) 
+			{
+                transform.localEulerAngles = new Vector3(0, 270, 0);
+                playerDirection = "right";
+                rayCastDirection = new Vector3(1, 0, 0);
+                if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == false)
+                {
+                    Movement(endPosition.x + distanceToMove, endPosition.z);
+                }
+			}
+			else if (horizontal == -1) 
+			{
+                transform.localEulerAngles = new Vector3(0, 90, 0);
+                playerDirection = "left";
+                rayCastDirection = new Vector3(-1, 0, 0);
+                if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == false)
+                {
+                    Movement(endPosition.x - distanceToMove, endPosition.z);
+                }
+			}
+#endif     
         }
     }
 
 	public void Movement(float x, float z)
 	{
         endPosition = new Vector3(x, endPosition.y, z);
-                moveToEnd = true;
-                gameController.nextTurn();
+        if (shellMode == false)
+        {
+            moveToEnd = true;
+            gameController.nextTurn();
+        }
+        else if(shellMode == true)
+        {
+            shellMode = false;
+            Instantiate(shell, endPosition, Quaternion.identity);
+            endPosition = transform.position;
+        }
 	}
+
+    public void DropShell()
+    {
+        if (shellMode == true)
+            shellMode = false;
+        else
+            shellMode = true;
+
+        Debug.Log("ShellDrop");
+    }
 
     /*void OnTriggerEnter(Collider other)
 	{

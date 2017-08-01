@@ -28,7 +28,7 @@ public class Hazard : MonoBehaviour {
 		{
 			transform.position = new Vector3 (transform.position.x, 0.4f, transform.position.z);
 		}
-		else if (currentTurn == 2) 
+		else if (currentTurn == 2 || currentTurn == 3) 
 		{
 			transform.position = new Vector3 (transform.position.x, 0.55f, transform.position.z);
 		}
@@ -45,6 +45,10 @@ public class Hazard : MonoBehaviour {
         {
             Destroy(other.gameObject);
             gameController.death = true;
+        }
+        if (other.gameObject.tag == "Boulder")
+        {
+            Destroy(other.gameObject);
         }
     }
         
