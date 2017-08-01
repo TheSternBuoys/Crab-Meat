@@ -39,7 +39,7 @@ public class Player : MonoBehaviour {
 			} 
 			else if (SceneName == "Level 2") 
 			{
-				Application.LoadLevel ("Level 3");
+				Application.LoadLevel ("Level 5");
 			} 
 			else if (SceneName == "Level 3") 
 			{
@@ -55,7 +55,7 @@ public class Player : MonoBehaviour {
             }
             else if (SceneName == "Level 6")
             {
-                Application.LoadLevel("Level 7");
+                Application.LoadLevel("Level 9");
             }
             else if (SceneName == "Level 7")
             {
@@ -75,7 +75,7 @@ public class Player : MonoBehaviour {
             }
             else if (SceneName == "Level 11")
             {
-                Application.LoadLevel("Level 12");
+                Application.LoadLevel("Main Menu");
             }
             else if (SceneName == "Level 12")
             {
@@ -241,7 +241,6 @@ public class Player : MonoBehaviour {
 
 	public void Movement(float x, float z)
 	{
-        Instantiate(hitBox, transform.position, Quaternion.identity);
         endPosition = new Vector3(x, endPosition.y, z);
         if (shellMode == false)
         {
