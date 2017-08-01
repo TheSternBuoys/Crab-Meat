@@ -6,12 +6,12 @@ using System.IO;
 public class LoadLevel : MonoBehaviour {
 	//GameObjects to add to inspector/layers
 	public GameObject wall;
-	public GameObject player;
+    public GameObject AtlanteanWall;
+    public GameObject player;
 	public GameObject sandGround;
-	public GameObject reefGround;
-	public GameObject atlantisGround;
+	public GameObject AtlanteanGround;
     public GameObject BoulderObstacle;
-    public GameObject PressuePlate;
+    public GameObject PressurePlate;
     public GameObject SandGroundPortal;
 	public GameObject grass;
     public GameObject SandBoulderHole;
@@ -75,12 +75,10 @@ public class LoadLevel : MonoBehaviour {
 						case "SG":
 							currentObject = sandGround;
 							break;
-						case "AG":
-							currentObject = reefGround;
-							break;
-						case "RG":
-							currentObject = atlantisGround;
-							break;
+                        case "AG":
+                            currentObject = AtlanteanGround;
+                            break;
+
                         case "SP":
                             currentObject = SandGroundPortal;
                             break;
@@ -90,7 +88,10 @@ public class LoadLevel : MonoBehaviour {
                         case "#":
                             currentObject = wall;
                             break;
-                        case "GT":
+                        case "!#":
+                            currentObject = AtlanteanWall;
+                            break;
+                            case "GT":
                             currentObject = GroundTrap;
                             break;
                         default:
@@ -115,7 +116,10 @@ public class LoadLevel : MonoBehaviour {
 						case "#":
 							currentObject = wall;
 							break;
-						case "P":
+                        case "!#":
+                            currentObject = AtlanteanWall;
+                            break;
+                            case "P":
 							currentObject = player;
 							break;
                         case "BO":
@@ -125,7 +129,7 @@ public class LoadLevel : MonoBehaviour {
 							currentObject = grass;
 							break;
                         case "PP":
-                            currentObject = PressuePlate;
+                            currentObject = PressurePlate;
                             break;
                             default:
 							currentObject = null;

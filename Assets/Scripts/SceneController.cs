@@ -24,7 +24,7 @@ public class SceneController : MonoBehaviour {
         Time.timeScale = 1;
         if (Loading.activeInHierarchy == false)
         {
-            Time.timeScale = 0;
+            Time.timeScale = 1;
             Loading.SetActive(true);
         }
     }
@@ -36,7 +36,7 @@ public class SceneController : MonoBehaviour {
         Time.timeScale = 1;
         if (Loading.activeInHierarchy == false)
         {
-            Time.timeScale = 0;
+            Time.timeScale = 1;
             Loading.SetActive(true);
         }
     }
@@ -47,7 +47,7 @@ public class SceneController : MonoBehaviour {
         Time.timeScale = 1;
         if (Loading.activeInHierarchy == false)
         {
-            Time.timeScale = 0;
+            Time.timeScale = 1;
             Loading.SetActive(true);
         }
     }
@@ -58,7 +58,7 @@ public class SceneController : MonoBehaviour {
         Time.timeScale = 1;
         if (Loading.activeInHierarchy == false)
         {
-            Time.timeScale = 0;
+            Time.timeScale = 1;
             Loading.SetActive(true);
         }
     }
@@ -69,7 +69,7 @@ public class SceneController : MonoBehaviour {
         Time.timeScale = 1;
         if (Loading.activeInHierarchy == false)
         {
-            Time.timeScale = 0;
+            Time.timeScale = 1;
             Loading.SetActive(true);
         }
     }
