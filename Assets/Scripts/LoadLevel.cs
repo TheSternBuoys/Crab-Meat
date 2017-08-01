@@ -15,6 +15,7 @@ public class LoadLevel : MonoBehaviour {
     public GameObject SandGroundPortal;
 	public GameObject grass;
     public GameObject SandBoulderHole;
+    public GameObject GroundTrap;
 
     public int level;
 
@@ -88,6 +89,9 @@ public class LoadLevel : MonoBehaviour {
                                 break;
                         case "#":
                             currentObject = wall;
+                            break;
+                        case "GT":
+                            currentObject = GroundTrap;
                             break;
                         default:
 							currentObject = null;

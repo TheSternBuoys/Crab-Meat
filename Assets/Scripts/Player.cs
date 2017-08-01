@@ -26,7 +26,6 @@ public class Player : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        print("triggered");
 		if (other.gameObject.tag == "Portal") 
 		{
 			if (SceneName == "Level 1") 
@@ -39,9 +38,45 @@ public class Player : MonoBehaviour {
 			} 
 			else if (SceneName == "Level 3") 
 			{
-				Application.LoadLevel ("Main Menu");
+				Application.LoadLevel ("Level 4");
 			}
-		}
+            else if (SceneName == "Level 4")
+            {
+                Application.LoadLevel("Level 5");
+            }
+            else if (SceneName == "Level 5")
+            {
+                Application.LoadLevel("Level 6");
+            }
+            else if (SceneName == "Level 6")
+            {
+                Application.LoadLevel("Level 7");
+            }
+            else if (SceneName == "Level 7")
+            {
+                Application.LoadLevel("Level 8");
+            }
+            else if (SceneName == "Level 8")
+            {
+                Application.LoadLevel("Level 9");
+            }
+            else if (SceneName == "Level 9")
+            {
+                Application.LoadLevel("Level 10");
+            }
+            else if (SceneName == "Level 10")
+            {
+                Application.LoadLevel("Level 11");
+            }
+            else if (SceneName == "Level 11")
+            {
+                Application.LoadLevel("Level 12");
+            }
+            else if (SceneName == "Level 12")
+            {
+                Application.LoadLevel("Main Menu");
+            }
+        }
     }
 
     // Use this for initialization
