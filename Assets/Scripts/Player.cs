@@ -9,13 +9,14 @@ public class Player : MonoBehaviour {
 	public float moveSpeed;
 	public float distance;
 	public float turntTimer;
-	public LayerMask mask;
+    public string playerDirection;
+    public bool shellMode;
+    public LayerMask mask;
 	public LayerMask destructable;
 	public GameController gameController;
-    public string playerDirection;
     public GameObject shell;
-    public bool shellMode;
-
+    public GameObject hitBox;
+    
     RaycastHit hit;
     Vector3 rayCastDirection;
     private bool moveToEnd = false;
@@ -240,6 +241,7 @@ public class Player : MonoBehaviour {
 
 	public void Movement(float x, float z)
 	{
+        Instantiate(hitBox, transform.position, Quaternion.identity);
         endPosition = new Vector3(x, endPosition.y, z);
         if (shellMode == false)
         {
@@ -264,12 +266,6 @@ public class Player : MonoBehaviour {
         Debug.Log("ShellDrop");
     }
 
-    /*void OnTriggerEnter(Collider other)
-	{
-		if (other.gameObject.tag == "Hazard")
-			Destroy (gameObject);
-	}*/
-
     /*if (Physics.Raycast (ray, out hit, distance)) 
 	Ray ray = new Ray (transform.position,transform.forward);
 
@@ -290,39 +286,5 @@ public class Player : MonoBehaviour {
 			{
 				endPosition = new Vector3 (endPosition.x, endPosition.y, endPosition.z + distanceToMove);
 				moveToEnd = true;
-			}*/
-
-    /*//keycode
-			if (Input.GetKeyDown(KeyCode.UpArrow))
-			{
-				if (Physics.Raycast(transform.position, transform.forward, distance, mask) == false)
-				{
-                    transform.localEulerAngles = new Vector3(0, 180, 0);
-					Movement(endPosition.x, endPosition.z + distanceToMove);
-				}
-			}
-			else if (Input.GetKeyDown(KeyCode.DownArrow))
-			{
-				if (Physics.Raycast(transform.position, transform.forward * -1f, distance, mask) == false)
-				{
-                    transform.localEulerAngles = new Vector3(0, 0, 0);
-                    Movement(endPosition.x, endPosition.z - distanceToMove);
-				}
-			}
-			else if (Input.GetKeyDown(KeyCode.RightArrow))
-			{
-				if (Physics.Raycast(transform.position, transform.right, distance, mask) == false)
-				{
-                    transform.localEulerAngles = new Vector3(0, 270, 0);
-                    Movement(endPosition.x + distanceToMove, endPosition.z);
-				}
-			}
-			else if (Input.GetKeyDown(KeyCode.LeftArrow))
-			{
-				if (Physics.Raycast(transform.position, transform.right * -1f, distance, mask) == false)
-				{
-                    transform.localEulerAngles = new Vector3(0, 90, 0);
-                    Movement(endPosition.x - distanceToMove, endPosition.z);
-				}
 			}*/
 }

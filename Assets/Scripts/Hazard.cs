@@ -24,13 +24,13 @@ public class Hazard : MonoBehaviour {
 	public void NextTurn()
 	{
 		currentTurn += 1;
-		if(currentTurn == 1)
-		{
-			transform.position = new Vector3 (transform.position.x, 0.4f, transform.position.z);
-		}
-		else if (currentTurn == 2 || currentTurn == 3) 
+		if(currentTurn == 1 || currentTurn == 2)
 		{
 			transform.position = new Vector3 (transform.position.x, 0.55f, transform.position.z);
+		}
+		else if (currentTurn == 3) 
+		{
+			transform.position = new Vector3 (transform.position.x, 0.60f, transform.position.z);
 		}
 		else
 		{
