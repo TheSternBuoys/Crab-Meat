@@ -4,18 +4,29 @@ using UnityEngine;
 
 public class SceneController : MonoBehaviour {
 
+    public GameObject Loading;
     public GameObject Pause;
 
     public void MainMenu()
     {
         Application.LoadLevel("Main Menu");
         Time.timeScale = 1;
+        if (Loading.activeInHierarchy == false)
+        {
+            Time.timeScale = 1;
+            Loading.SetActive(true);
+        }
     }
 
     public void Credits()
     {
         Application.LoadLevel("Credits");
         Time.timeScale = 1;
+        if (Loading.activeInHierarchy == false)
+        {
+            Time.timeScale = 0;
+            Loading.SetActive(true);
+        }
     }
 
     public void QuitGame()
@@ -23,24 +34,44 @@ public class SceneController : MonoBehaviour {
         Application.Quit();
         print("Quit");
         Time.timeScale = 1;
+        if (Loading.activeInHierarchy == false)
+        {
+            Time.timeScale = 0;
+            Loading.SetActive(true);
+        }
     }
 
     public void LoadLevel1()
     {
         Application.LoadLevel("Level 1");
         Time.timeScale = 1;
+        if (Loading.activeInHierarchy == false)
+        {
+            Time.timeScale = 0;
+            Loading.SetActive(true);
+        }
     }
 
     public void LoadIntroCutscene()
     {
         Application.LoadLevel("Intro");
         Time.timeScale = 1;
+        if (Loading.activeInHierarchy == false)
+        {
+            Time.timeScale = 0;
+            Loading.SetActive(true);
+        }
     }
 
     public void Retry()
     {
         Application.LoadLevel(Application.loadedLevel);
         Time.timeScale = 1;
+        if (Loading.activeInHierarchy == false)
+        {
+            Time.timeScale = 0;
+            Loading.SetActive(true);
+        }
     }
     
     public void UnPauseGame()
@@ -58,11 +89,8 @@ public class SceneController : MonoBehaviour {
         {
             Time.timeScale = 0;
             Pause.SetActive(true);
-            print("boi");
         }
-
     }
-
 
 
 }

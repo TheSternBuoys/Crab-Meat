@@ -85,7 +85,39 @@ public class Player : MonoBehaviour {
         }
 
 #else
-        if (Input.touchCount > 0)
+            //keycode
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                if (Physics.Raycast(transform.position, transform.forward, distance, mask) == false)
+                {
+                    Movement(endPosition.x, endPosition.z + distanceToMove);
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                if (Physics.Raycast(transform.position, transform.forward * -1f, distance, mask) == false)
+                {
+                    Movement(endPosition.x, endPosition.z - distanceToMove);
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                if (Physics.Raycast(transform.position, transform.right, distance, mask) == false)
+                {
+                    Movement(endPosition.x + distanceToMove, endPosition.z);
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                if (Physics.Raycast(transform.position, transform.right * -1f, distance, mask) == false)
+                {
+                    Movement(endPosition.x - distanceToMove, endPosition.z);
+                }
+            }
+
+            //Touch
+
+            if (Input.touchCount > 0)
         {
             Touch myTouch = Input.touches[0];
 
@@ -141,8 +173,7 @@ public class Player : MonoBehaviour {
 				moveToEnd = true;
 			}*/
 
-		if (vertical == 1) 
-			//if(Input.GetKeyDown(KeyCode.UpArrow))
+		if (vertical == 1)
 		{
 			if (Physics.Raycast (transform.position, transform.forward, distance, mask) == false)
 				{
@@ -150,7 +181,7 @@ public class Player : MonoBehaviour {
 				}
 		}
 		else if (vertical == -1) 
-			//if(Input.GetKeyDown(KeyCode.DownArrow))
+			if(Input.GetKeyDown(KeyCode.DownArrow))
 		{
 			if (Physics.Raycast (transform.position, transform.forward * -1f, distance, mask) == false) 
 			{
