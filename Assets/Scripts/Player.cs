@@ -43,7 +43,7 @@ public class Player : MonoBehaviour {
 			} 
 			else if (SceneName == "Level 3") 
 			{
-				Application.LoadLevel ("Level 4");
+				Application.LoadLevel ("Level 5");
 			}
             else if (SceneName == "Level 4")
             {
@@ -75,7 +75,7 @@ public class Player : MonoBehaviour {
             }
             else if (SceneName == "Level 11")
             {
-                Application.LoadLevel("Main Menu");
+                Application.LoadLevel("Level 12");
             }
             else if (SceneName == "Level 12")
             {
@@ -114,10 +114,9 @@ public class Player : MonoBehaviour {
             int horizontal = 0;     //Used to store the horizontal move direction.
             int vertical = 0;       //Used to store the vertical move direction.
 
-#if UNITY_STANDALONE || UNITY_WEBPLAYER
 
             //keycode
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.W))
             {
                 transform.localEulerAngles = new Vector3(0, 180, 0);
                 playerDirection = "up";
@@ -127,7 +126,7 @@ public class Player : MonoBehaviour {
                     Movement(endPosition.x, endPosition.z + distanceToMove);
                 }
             }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            else if (Input.GetKeyDown(KeyCode.S))
             {
                 transform.localEulerAngles = new Vector3(0, 0, 0);
                 playerDirection = "down";
@@ -137,7 +136,7 @@ public class Player : MonoBehaviour {
                     Movement(endPosition.x, endPosition.z - distanceToMove);
                 }
             }
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            else if (Input.GetKeyDown(KeyCode.D))
             {
                 transform.localEulerAngles = new Vector3(0, 270, 0);
                 playerDirection = "right";
@@ -147,7 +146,7 @@ public class Player : MonoBehaviour {
                     Movement(endPosition.x + distanceToMove, endPosition.z);
                 }
             }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            else if (Input.GetKeyDown(KeyCode.A))
             {
                 transform.localEulerAngles = new Vector3(0, 90, 0);
                 playerDirection = "left";
@@ -166,38 +165,38 @@ public class Player : MonoBehaviour {
                 }
             }*/
 
-#else
+
             //Touch
 
             if (Input.touchCount > 0)
-        {
-            Touch myTouch = Input.touches[0];
-
-            if (myTouch.phase == TouchPhase.Began)
             {
-                touchOrigin = myTouch.position;
-            }
+                Touch myTouch = Input.touches[0];
 
-            else if (myTouch.phase == TouchPhase.Ended && touchOrigin.x >= 0)
-            {
-                Vector2 touchEnd = myTouch.position;
-                float x = touchEnd.x - touchOrigin.x;
-                float y = touchEnd.y - touchOrigin.y;
-                touchOrigin.x = -1;
-                if (Mathf.Abs(x) > Mathf.Abs(y))
+                if (myTouch.phase == TouchPhase.Began)
                 {
-                    horizontal = x > 0 ? 1 : -1;
+                    touchOrigin = myTouch.position;
                 }
 
-                else
+                else if (myTouch.phase == TouchPhase.Ended && touchOrigin.x >= 0)
                 {
-                    vertical = y > 0 ? 1 : -1;
+                    Vector2 touchEnd = myTouch.position;
+                    float x = touchEnd.x - touchOrigin.x;
+                    float y = touchEnd.y - touchOrigin.y;
+                    touchOrigin.x = -1;
+                    if (Mathf.Abs(x) > Mathf.Abs(y))
+                    {
+                        horizontal = x > 0 ? 1 : -1;
+                    }
+
+                    else
+                    {
+                        vertical = y > 0 ? 1 : -1;
+                    }
                 }
             }
-        }
 
-			if (vertical == 1)
-			{
+            if (vertical == 1)
+            {
                 transform.localEulerAngles = new Vector3(0, 180, 0);
                 playerDirection = "up";
                 rayCastDirection = new Vector3(0, 0, 1);
@@ -205,8 +204,9 @@ public class Player : MonoBehaviour {
                 {
                     Movement(endPosition.x, endPosition.z + distanceToMove);
                 }
-			}
-			else if (vertical == -1) 
+            }
+            else if (vertical == -1)
+            {
                 transform.localEulerAngles = new Vector3(0, 0, 0);
                 playerDirection = "down";
                 rayCastDirection = new Vector3(0, 0, -1);
@@ -214,9 +214,11 @@ public class Player : MonoBehaviour {
                 {
                     Movement(endPosition.x, endPosition.z - distanceToMove);
                 }
-			}
-			else if (horizontal == 1) 
-			{
+            }
+
+
+            else if (horizontal == 1)
+            {
                 transform.localEulerAngles = new Vector3(0, 270, 0);
                 playerDirection = "right";
                 rayCastDirection = new Vector3(1, 0, 0);
@@ -224,9 +226,9 @@ public class Player : MonoBehaviour {
                 {
                     Movement(endPosition.x + distanceToMove, endPosition.z);
                 }
-			}
-			else if (horizontal == -1) 
-			{
+            }
+            else if (horizontal == -1)
+            {
                 transform.localEulerAngles = new Vector3(0, 90, 0);
                 playerDirection = "left";
                 rayCastDirection = new Vector3(-1, 0, 0);
@@ -234,10 +236,11 @@ public class Player : MonoBehaviour {
                 {
                     Movement(endPosition.x - distanceToMove, endPosition.z);
                 }
-			}
-#endif     
+
+            }
         }
     }
+    
 
 	public void Movement(float x, float z)
 	{
