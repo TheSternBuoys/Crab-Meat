@@ -24,6 +24,9 @@ public class Player : MonoBehaviour {
 
     private Vector2 touchOrigin = -Vector2.one;
 
+    public GameObject HowToPlayMobile;
+    public GameObject HowToPlayComputer;
+
 
 
     //Placeholder for next level stuff
@@ -124,6 +127,7 @@ public class Player : MonoBehaviour {
                 if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == false)
                 {
                     Movement(endPosition.x, endPosition.z + distanceToMove);
+                    HowToPlayComputer.SetActive(false);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.S))
@@ -134,6 +138,7 @@ public class Player : MonoBehaviour {
                 if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == false)
                 {
                     Movement(endPosition.x, endPosition.z - distanceToMove);
+                    HowToPlayComputer.SetActive(false);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.D))
@@ -144,6 +149,7 @@ public class Player : MonoBehaviour {
                 if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == false)
                 {
                     Movement(endPosition.x + distanceToMove, endPosition.z);
+                    HowToPlayComputer.SetActive(false);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.A))
@@ -154,6 +160,7 @@ public class Player : MonoBehaviour {
                 if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == false)
                 {
                     Movement(endPosition.x - distanceToMove, endPosition.z);
+                    HowToPlayComputer.SetActive(false);
                 }
 
             }
@@ -203,6 +210,7 @@ public class Player : MonoBehaviour {
                 if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == false)
                 {
                     Movement(endPosition.x, endPosition.z + distanceToMove);
+                    HowToPlayMobile.SetActive(false);
                 }
             }
             else if (vertical == -1)
@@ -213,6 +221,7 @@ public class Player : MonoBehaviour {
                 if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == false)
                 {
                     Movement(endPosition.x, endPosition.z - distanceToMove);
+                    HowToPlayMobile.SetActive(false);
                 }
             }
 
@@ -225,6 +234,7 @@ public class Player : MonoBehaviour {
                 if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == false)
                 {
                     Movement(endPosition.x + distanceToMove, endPosition.z);
+                    HowToPlayMobile.SetActive(false);
                 }
             }
             else if (horizontal == -1)
@@ -235,6 +245,7 @@ public class Player : MonoBehaviour {
                 if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == false)
                 {
                     Movement(endPosition.x - distanceToMove, endPosition.z);
+                    HowToPlayMobile.SetActive(false);
                 }
 
             }
