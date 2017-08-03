@@ -42,7 +42,7 @@ public class Player : MonoBehaviour {
 			} 
 			else if (SceneName == "Level 2") 
 			{
-				Application.LoadLevel ("Level 5");
+				Application.LoadLevel ("Level 3");
 			} 
 			else if (SceneName == "Level 3") 
 			{
@@ -58,7 +58,7 @@ public class Player : MonoBehaviour {
             }
             else if (SceneName == "Level 6")
             {
-                Application.LoadLevel("Level 9");
+                Application.LoadLevel("Level 8");
             }
             else if (SceneName == "Level 7")
             {
