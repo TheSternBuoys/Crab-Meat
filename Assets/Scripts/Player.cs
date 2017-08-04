@@ -12,7 +12,6 @@ public class Player : MonoBehaviour {
     public string playerDirection;
     public LayerMask mask;
 	public LayerMask destructable;
-	public GameController gameController;
     public GameObject HowToPlayMobile;
     public GameObject HowToPlayComputer;
     public RaycastHit hit;
@@ -21,6 +20,7 @@ public class Player : MonoBehaviour {
     Vector3 rayCastDirection;
     private bool moveToEnd = false;
 	private Vector3 endPosition;
+    private GameController gameController;
 
     private Vector2 touchOrigin = -Vector2.one;
 
@@ -62,97 +62,88 @@ public class Player : MonoBehaviour {
             {
                 transform.localEulerAngles = new Vector3(0, 180, 0);
                 playerDirection = "up";
-                rayCastDirection = new Vector3(0, 0, 1);
+                rayCastDirection = new Vector3(0, 0.5f, 1);
                 if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == true)
                 {
-                    if (hit.collider.tag == "Boulder")
+                    if (hit.collider.tag == "Wall")
                     {
                         hit.collider.SendMessageUpwards("TestCollision", rayCastDirection, SendMessageOptions.DontRequireReceiver);
                         if (rayCastBoulderCheck == true)
                         {
                             Movement(endPosition.x, endPosition.z + distanceToMove);
-                            HowToPlayComputer.SetActive(false);
                         }
                     }
                 }
                 else
                 {
-                    Debug.Log("No");
                     Movement(endPosition.x, endPosition.z + distanceToMove);
-                    HowToPlayComputer.SetActive(false);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.S))
             {
                 transform.localEulerAngles = new Vector3(0, 0, 0);
                 playerDirection = "down";
-                rayCastDirection = new Vector3(0, 0, -1);
+                rayCastDirection = new Vector3(0, 0.5f, -1);
                 if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == true)
                 {
-                    if (hit.collider.tag == "Boulder")
+                    if (hit.collider.tag == "Wall")
                     {
                         hit.collider.SendMessageUpwards("TestCollision", rayCastDirection, SendMessageOptions.DontRequireReceiver);
-                        if(rayCastBoulderCheck == true)
+                        if (rayCastBoulderCheck == true)
                         {
                             Movement(endPosition.x, endPosition.z - distanceToMove);
-                            HowToPlayComputer.SetActive(false);
                         }
                     }
                 }
                 else
                 {
                     Movement(endPosition.x, endPosition.z - distanceToMove);
-                    HowToPlayComputer.SetActive(false);
                 }
-
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
                 transform.localEulerAngles = new Vector3(0, 270, 0);
                 playerDirection = "right";
-                rayCastDirection = new Vector3(1, 0, 0);
+                rayCastDirection = new Vector3(1, 0.5f, 0);
                 if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == true)
                 {
-                    if (hit.collider.tag == "Boulder")
+                    if (hit.collider.tag == "Wall")
                     {
                         hit.collider.SendMessageUpwards("TestCollision", rayCastDirection, SendMessageOptions.DontRequireReceiver);
                         if (rayCastBoulderCheck == true)
                         {
                             Movement(endPosition.x + distanceToMove, endPosition.z);
-                            HowToPlayComputer.SetActive(false);
                         }
                     }
                 }
                 else
                 {
                     Movement(endPosition.x + distanceToMove, endPosition.z);
-                    HowToPlayComputer.SetActive(false);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.A))
             {
                 transform.localEulerAngles = new Vector3(0, 90, 0);
                 playerDirection = "left";
-                rayCastDirection = new Vector3(-1, 0, 0);
+                rayCastDirection = new Vector3(-1, 0.5f, 0);
                 if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == true)
                 {
-                    if (hit.collider.tag == "Boulder")
+                    if (hit.collider.tag == "Wall")
                     {
                         hit.collider.SendMessageUpwards("TestCollision", rayCastDirection, SendMessageOptions.DontRequireReceiver);
                         if (rayCastBoulderCheck == true)
                         {
                             Movement(endPosition.x - distanceToMove, endPosition.z);
-                            HowToPlayComputer.SetActive(false);
                         }
                     }
                 }
                 else
                 {
                     Movement(endPosition.x - distanceToMove, endPosition.z);
-                    HowToPlayComputer.SetActive(false);
                 }
-
             }
+
+            //HowToPlayComputer.SetActive(false);
 
             //Touch
 
@@ -205,8 +196,6 @@ public class Player : MonoBehaviour {
                     HowToPlayMobile.SetActive(false);
                 }
             }
-
-
             else if (horizontal == 1)
             {
                 transform.localEulerAngles = new Vector3(0, 270, 0);
@@ -229,8 +218,8 @@ public class Player : MonoBehaviour {
                     Movement(endPosition.x - distanceToMove, endPosition.z);
                     HowToPlayMobile.SetActive(false);
                 }
-
             }
+             rayCastBoulderCheck = false;
         }
     }
     
@@ -241,8 +230,14 @@ public class Player : MonoBehaviour {
         gameController.nextTurn();
 	}
 
+    public void Death()
+    {
+        Destroy(gameObject);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.gameObject.tag == "Portal")
         {
             if (SceneName == "Level 1")

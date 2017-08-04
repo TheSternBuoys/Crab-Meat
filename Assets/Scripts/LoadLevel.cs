@@ -16,6 +16,7 @@ public class LoadLevel : MonoBehaviour {
 	public GameObject grass;
     public GameObject SandBoulderHole;
     public GameObject GroundTrap;
+    public GameObject iceBlock;
 
     public int level;
 
@@ -86,9 +87,12 @@ public class LoadLevel : MonoBehaviour {
                             break;
                         case "SBH":
                             currentObject = SandBoulderHole;
-                                break;
+                            break;
                         case "!#":
                             currentObject = AtlanteanWall;
+                            break;
+                        case "I":
+                            currentObject = iceBlock;
                             break;
                         case "GT":
                             currentObject = GroundTrap;
@@ -96,10 +100,6 @@ public class LoadLevel : MonoBehaviour {
                         default:
 							currentObject = null;
 							break;
-                            
-
-
-
                         }
 						if (currentObject != null) 
 						{
