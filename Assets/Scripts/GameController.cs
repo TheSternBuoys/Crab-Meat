@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour {
 	public float startingTimer;
 	public bool playersTurn;
 	public GameObject[] hazards;
+    public GameObject[] crabs;
     public float deathTimer;
     public bool death = false;
     public int iceAmount;
@@ -52,7 +53,12 @@ public class GameController : MonoBehaviour {
                 {
                     hazards[i].SendMessage("NextTurn");
                 }
-            playersTurn = true;
+                for (int i = 0; i < crabs.Length; i++)
+                {
+                    crabs[i].SendMessage("NextTurn");
+                }
+
+                playersTurn = true;
             turnTimer = startingTimer;
             }
         }
@@ -69,7 +75,7 @@ public class GameController : MonoBehaviour {
 		playersTurn = false;
 	}
 
-    public void increaseIce()
+    public void IncreaseIce()
     {
         iceAmount++;
         if(iceAmount == iceDeath)
@@ -77,5 +83,10 @@ public class GameController : MonoBehaviour {
             player.Death();
             death = true;
         }
+    }
+
+    public void Reset()
+    {
+        iceAmount = 0;
     }
 }

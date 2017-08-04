@@ -17,11 +17,5 @@ public class IceBlock : MonoBehaviour {
 		
 	}
 
-    void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag == "Player")
-        {
-            gameController.increaseIce();   
-        }
-    }
+
 }

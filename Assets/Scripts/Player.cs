@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour
+{
 
-	public float distanceToMove;
-	public float moveSpeed;
-	public float distance;
-	public float turntTimer;
+    public float distanceToMove;
+    public float moveSpeed;
+    public float distance;
+    public float turntTimer;
     public string playerDirection;
     public LayerMask mask;
-	public LayerMask destructable;
     public GameObject HowToPlayMobile;
     public GameObject HowToPlayComputer;
     public RaycastHit hit;
@@ -19,7 +19,7 @@ public class Player : MonoBehaviour {
 
     Vector3 rayCastDirection;
     private bool moveToEnd = false;
-	private Vector3 endPosition;
+    private Vector3 endPosition;
     private GameController gameController;
 
     private Vector2 touchOrigin = -Vector2.one;
@@ -28,25 +28,25 @@ public class Player : MonoBehaviour {
     string SceneName;
 
     // Use this for initialization
-    void Start () 
-	{
-		gameController = GameObject.FindWithTag ("GameController").GetComponent<GameController> ();
-		turntTimer = gameController.startingTimer;
-		endPosition = transform.position;
+    void Start()
+    {
+        gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
+        turntTimer = gameController.startingTimer;
+        endPosition = transform.position;
 
         //Placeholder for next level stuff
         Scene CurrentScene = SceneManager.GetActiveScene();
         SceneName = CurrentScene.name;
     }
 
-	// Update is called once per frame
-	void FixedUpdate () 
-	{
-		if (moveToEnd == true) 
-		{
-			transform.position = Vector3.MoveTowards (transform.position, endPosition, moveSpeed * Time.deltaTime);
-		}
-	}
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        if (moveToEnd == true)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, endPosition, moveSpeed * Time.deltaTime);
+        }
+    }
 
     void Update()
     {
@@ -205,7 +205,7 @@ public class Player : MonoBehaviour {
                 {
                     Movement(endPosition.x + distanceToMove, endPosition.z);
                     HowToPlayMobile.SetActive(false);
-                    
+
                 }
             }
             else if (horizontal == -1)
@@ -219,25 +219,33 @@ public class Player : MonoBehaviour {
                     HowToPlayMobile.SetActive(false);
                 }
             }
-             rayCastBoulderCheck = false;
+            rayCastBoulderCheck = false;
         }
     }
-    
-	public void Movement(float x, float z)
-	{
+
+    public void Movement(float x, float z)
+    {
         endPosition = new Vector3(x, endPosition.y, z);
         moveToEnd = true;
         gameController.nextTurn();
-	}
+
+    }
 
     public void Death()
     {
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-
+        if (other.gameObject.tag == "IceBlock")
+        {
+            gameController.IncreaseIce();
+        }
+        else
+        {
+            gameController.Reset();
+        }
         if (other.gameObject.tag == "Portal")
         {
             if (SceneName == "Level 1")
