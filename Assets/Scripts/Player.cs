@@ -181,8 +181,18 @@ public class Player : MonoBehaviour
                 rayCastDirection = new Vector3(0, 0, 1);
                 if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == false)
                 {
+                    if (hit.collider.tag == "Wall")
+                    {
+                        hit.collider.SendMessageUpwards("TestCollision", rayCastDirection, SendMessageOptions.DontRequireReceiver);
+                        if (rayCastBoulderCheck == true)
+                        {
+                            Movement(endPosition.x, endPosition.z + distanceToMove);
+                        }
+                    }
+                }
+                else
+                {
                     Movement(endPosition.x, endPosition.z + distanceToMove);
-                    HowToPlayMobile.SetActive(false);
                 }
             }
             else if (vertical == -1)
@@ -192,8 +202,18 @@ public class Player : MonoBehaviour
                 rayCastDirection = new Vector3(0, 0, -1);
                 if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == false)
                 {
+                    if (hit.collider.tag == "Wall")
+                    {
+                        hit.collider.SendMessageUpwards("TestCollision", rayCastDirection, SendMessageOptions.DontRequireReceiver);
+                        if (rayCastBoulderCheck == true)
+                        {
+                            Movement(endPosition.x, endPosition.z - distanceToMove);
+                        }
+                    }
+                }
+                else
+                {
                     Movement(endPosition.x, endPosition.z - distanceToMove);
-                    HowToPlayMobile.SetActive(false);
                 }
             }
             else if (horizontal == 1)
@@ -203,9 +223,18 @@ public class Player : MonoBehaviour
                 rayCastDirection = new Vector3(1, 0, 0);
                 if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == false)
                 {
+                    if (hit.collider.tag == "Wall")
+                    {
+                        hit.collider.SendMessageUpwards("TestCollision", rayCastDirection, SendMessageOptions.DontRequireReceiver);
+                        if (rayCastBoulderCheck == true)
+                        {
+                            Movement(endPosition.x + distanceToMove, endPosition.z);
+                        }
+                    }
+                }
+                else
+                {
                     Movement(endPosition.x + distanceToMove, endPosition.z);
-                    HowToPlayMobile.SetActive(false);
-
                 }
             }
             else if (horizontal == -1)
@@ -215,8 +244,18 @@ public class Player : MonoBehaviour
                 rayCastDirection = new Vector3(-1, 0, 0);
                 if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == false)
                 {
+                    if (hit.collider.tag == "Wall")
+                    {
+                        hit.collider.SendMessageUpwards("TestCollision", rayCastDirection, SendMessageOptions.DontRequireReceiver);
+                        if (rayCastBoulderCheck == true)
+                        {
+                            Movement(endPosition.x - distanceToMove, endPosition.z);
+                        }
+                    }
+                }
+                else
+                {
                     Movement(endPosition.x - distanceToMove, endPosition.z);
-                    HowToPlayMobile.SetActive(false);
                 }
             }
             rayCastBoulderCheck = false;
@@ -228,7 +267,6 @@ public class Player : MonoBehaviour
         endPosition = new Vector3(x, endPosition.y, z);
         moveToEnd = true;
         gameController.nextTurn();
-
     }
 
     public void Death()
