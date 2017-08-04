@@ -24,6 +24,10 @@ public class Player : MonoBehaviour
 
     private Vector2 touchOrigin = -Vector2.one;
 
+    public GameObject HowToPlay;
+
+
+
     //Placeholder for next level stuff
     string SceneName;
 
@@ -37,7 +41,9 @@ public class Player : MonoBehaviour
         //Placeholder for next level stuff
         Scene CurrentScene = SceneManager.GetActiveScene();
         SceneName = CurrentScene.name;
-    }
+
+        HowToPlay = GameObject.Find("HowToPlay");
+}
 
     // Update is called once per frame
     void FixedUpdate()
@@ -60,6 +66,7 @@ public class Player : MonoBehaviour
             //keycode
             if (Input.GetKeyDown(KeyCode.W))
             {
+                HowToPlay.SetActive(false);
                 transform.localEulerAngles = new Vector3(0, 180, 0);
                 playerDirection = "up";
                 rayCastDirection = new Vector3(0, 0.5f, 1);
@@ -81,6 +88,7 @@ public class Player : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.S))
             {
+                HowToPlay.SetActive(false);
                 transform.localEulerAngles = new Vector3(0, 0, 0);
                 playerDirection = "down";
                 rayCastDirection = new Vector3(0, 0.5f, -1);
@@ -102,6 +110,7 @@ public class Player : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
+                HowToPlay.SetActive(false);
                 transform.localEulerAngles = new Vector3(0, 270, 0);
                 playerDirection = "right";
                 rayCastDirection = new Vector3(1, 0.5f, 0);
@@ -123,6 +132,7 @@ public class Player : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.A))
             {
+                HowToPlay.SetActive(false);
                 transform.localEulerAngles = new Vector3(0, 90, 0);
                 playerDirection = "left";
                 rayCastDirection = new Vector3(-1, 0.5f, 0);
@@ -176,6 +186,7 @@ public class Player : MonoBehaviour
 
             if (vertical == 1)
             {
+                HowToPlay.SetActive(false);
                 transform.localEulerAngles = new Vector3(0, 180, 0);
                 playerDirection = "up";
                 rayCastDirection = new Vector3(0, 0, 1);
@@ -197,6 +208,7 @@ public class Player : MonoBehaviour
             }
             else if (vertical == -1)
             {
+                HowToPlay.SetActive(false);
                 transform.localEulerAngles = new Vector3(0, 0, 0);
                 playerDirection = "down";
                 rayCastDirection = new Vector3(0, 0, -1);
@@ -218,6 +230,7 @@ public class Player : MonoBehaviour
             }
             else if (horizontal == 1)
             {
+                HowToPlay.SetActive(false);
                 transform.localEulerAngles = new Vector3(0, 270, 0);
                 playerDirection = "right";
                 rayCastDirection = new Vector3(1, 0, 0);
@@ -239,6 +252,7 @@ public class Player : MonoBehaviour
             }
             else if (horizontal == -1)
             {
+                HowToPlay.SetActive(false);
                 transform.localEulerAngles = new Vector3(0, 90, 0);
                 playerDirection = "left";
                 rayCastDirection = new Vector3(-1, 0, 0);
@@ -292,7 +306,7 @@ public class Player : MonoBehaviour
             }
             else if (SceneName == "Level 2")
             {
-                Application.LoadLevel("Level 5");
+                Application.LoadLevel("Level 3");
             }
             else if (SceneName == "Level 3")
             {
@@ -308,7 +322,7 @@ public class Player : MonoBehaviour
             }
             else if (SceneName == "Level 6")
             {
-                Application.LoadLevel("Level 9");
+                Application.LoadLevel("Level 8");
             }
             else if (SceneName == "Level 7")
             {
@@ -331,6 +345,34 @@ public class Player : MonoBehaviour
                 Application.LoadLevel("Level 12");
             }
             else if (SceneName == "Level 12")
+            {
+                Application.LoadLevel("Level 15");
+            }
+            else if (SceneName == "Level 13")
+            {
+                Application.LoadLevel("Level 14");
+            }
+            else if (SceneName == "Level 14")
+            {
+                Application.LoadLevel("Level 14");
+            }
+            else if (SceneName == "Level 15")
+            {
+                Application.LoadLevel("Level 19");
+            }
+            else if (SceneName == "Level 16")
+            {
+                Application.LoadLevel("Level 17");
+            }
+            else if (SceneName == "Level 17")
+            {
+                Application.LoadLevel("Level 18");
+            }
+            else if (SceneName == "Level 18")
+            {
+                Application.LoadLevel("Level 19");
+            }
+            else if (SceneName == "Level 19")
             {
                 Application.LoadLevel("Main Menu");
             }

@@ -9,6 +9,14 @@ public class Boulder : MonoBehaviour {
     public float distance;
     public RaycastHit hit;
 
+    private void OnTriggerEnter(Collision collision)
+    {
+         if (collision.gameObject.tag == "Hazard")
+            {
+            Destroy(gameObject);
+            }
+    }
+
     // Use this for initialization
     void Start () {
         playerObject = GameObject.FindWithTag("Player").GetComponent<Player>();

@@ -46,9 +46,10 @@ public class Hazard : MonoBehaviour {
             Destroy(other.gameObject);
             gameController.death = true;
         }
-        if (other.gameObject.tag == "Boulder")
+        if (other.gameObject.tag == "Wall")
         {
             Destroy(other.gameObject);
+            print("Destroy");
         }
     }
         

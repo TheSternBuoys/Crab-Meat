@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour {
     public bool death = false;
     public int iceAmount;
     public int iceDeath;
+    public GameObject IceAudio;
 
     private Player player;
     private float refreshTimer = 0.5f;
@@ -21,11 +22,13 @@ public class GameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        turnTimer = startingTimer;   
+        turnTimer = startingTimer;
+        Refresh();
     }
 	
 	// Update is called once per frame
 	void Update () {
+        IceAudio = GameObject.Find("Ice");
         if (done == false)
         {
             if (refreshTimer > 0)
@@ -83,6 +86,25 @@ public class GameController : MonoBehaviour {
             player.Death();
             death = true;
         }
+
+        iceAmount = GameObject.Find("GameManager").GetComponent<GameController>().iceAmount;
+        if (iceAmount == 1)
+        {
+            IceAudio.GetComponent<AudioSource>().volume = .3f;
+            IceAudio.GetComponent<AudioSource>().Play();
+        }
+        if (iceAmount == 2)
+        {
+            IceAudio.GetComponent<AudioSource>().volume = .6f;
+            IceAudio.GetComponent<AudioSource>().Play();
+        }
+        if (iceAmount == 3)
+        {
+            IceAudio.GetComponent<AudioSource>().volume = 1f;
+            IceAudio.GetComponent<AudioSource>().Play();
+        }
+
+
     }
 
     public void Reset()
