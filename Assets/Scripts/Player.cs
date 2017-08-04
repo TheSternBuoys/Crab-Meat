@@ -10,82 +10,22 @@ public class Player : MonoBehaviour {
 	public float distance;
 	public float turntTimer;
     public string playerDirection;
-    public bool shellMode;
     public LayerMask mask;
 	public LayerMask destructable;
 	public GameController gameController;
-    public GameObject shell;
-    public GameObject hitBox;
-    
-    RaycastHit hit;
+    public GameObject HowToPlayMobile;
+    public GameObject HowToPlayComputer;
+    public RaycastHit hit;
+    public bool rayCastBoulderCheck;
+
     Vector3 rayCastDirection;
     private bool moveToEnd = false;
 	private Vector3 endPosition;
 
     private Vector2 touchOrigin = -Vector2.one;
 
-    public GameObject HowToPlayMobile;
-    public GameObject HowToPlayComputer;
-
-
-
     //Placeholder for next level stuff
     string SceneName;
-
-    private void OnTriggerEnter(Collider other)
-    {
-		if (other.gameObject.tag == "Portal") 
-		{
-			if (SceneName == "Level 1") 
-			{
-				Application.LoadLevel ("Level 2");
-			} 
-			else if (SceneName == "Level 2") 
-			{
-				Application.LoadLevel ("Level 5");
-			} 
-			else if (SceneName == "Level 3") 
-			{
-				Application.LoadLevel ("Level 5");
-			}
-            else if (SceneName == "Level 4")
-            {
-                Application.LoadLevel("Level 5");
-            }
-            else if (SceneName == "Level 5")
-            {
-                Application.LoadLevel("Level 6");
-            }
-            else if (SceneName == "Level 6")
-            {
-                Application.LoadLevel("Level 9");
-            }
-            else if (SceneName == "Level 7")
-            {
-                Application.LoadLevel("Level 8");
-            }
-            else if (SceneName == "Level 8")
-            {
-                Application.LoadLevel("Level 9");
-            }
-            else if (SceneName == "Level 9")
-            {
-                Application.LoadLevel("Level 10");
-            }
-            else if (SceneName == "Level 10")
-            {
-                Application.LoadLevel("Level 11");
-            }
-            else if (SceneName == "Level 11")
-            {
-                Application.LoadLevel("Level 12");
-            }
-            else if (SceneName == "Level 12")
-            {
-                Application.LoadLevel("Main Menu");
-            }
-        }
-    }
 
     // Use this for initialization
     void Start () 
@@ -97,9 +37,8 @@ public class Player : MonoBehaviour {
         //Placeholder for next level stuff
         Scene CurrentScene = SceneManager.GetActiveScene();
         SceneName = CurrentScene.name;
-
     }
-	
+
 	// Update is called once per frame
 	void FixedUpdate () 
 	{
@@ -124,8 +63,21 @@ public class Player : MonoBehaviour {
                 transform.localEulerAngles = new Vector3(0, 180, 0);
                 playerDirection = "up";
                 rayCastDirection = new Vector3(0, 0, 1);
-                if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == false)
+                if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == true)
                 {
+                    if (hit.collider.tag == "Boulder")
+                    {
+                        hit.collider.SendMessageUpwards("TestCollision", rayCastDirection, SendMessageOptions.DontRequireReceiver);
+                        if (rayCastBoulderCheck == true)
+                        {
+                            Movement(endPosition.x, endPosition.z + distanceToMove);
+                            HowToPlayComputer.SetActive(false);
+                        }
+                    }
+                }
+                else
+                {
+                    Debug.Log("No");
                     Movement(endPosition.x, endPosition.z + distanceToMove);
                     HowToPlayComputer.SetActive(false);
                 }
@@ -135,18 +87,43 @@ public class Player : MonoBehaviour {
                 transform.localEulerAngles = new Vector3(0, 0, 0);
                 playerDirection = "down";
                 rayCastDirection = new Vector3(0, 0, -1);
-                if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == false)
+                if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == true)
+                {
+                    if (hit.collider.tag == "Boulder")
+                    {
+                        hit.collider.SendMessageUpwards("TestCollision", rayCastDirection, SendMessageOptions.DontRequireReceiver);
+                        if(rayCastBoulderCheck == true)
+                        {
+                            Movement(endPosition.x, endPosition.z - distanceToMove);
+                            HowToPlayComputer.SetActive(false);
+                        }
+                    }
+                }
+                else
                 {
                     Movement(endPosition.x, endPosition.z - distanceToMove);
                     HowToPlayComputer.SetActive(false);
                 }
+
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
                 transform.localEulerAngles = new Vector3(0, 270, 0);
                 playerDirection = "right";
                 rayCastDirection = new Vector3(1, 0, 0);
-                if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == false)
+                if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == true)
+                {
+                    if (hit.collider.tag == "Boulder")
+                    {
+                        hit.collider.SendMessageUpwards("TestCollision", rayCastDirection, SendMessageOptions.DontRequireReceiver);
+                        if (rayCastBoulderCheck == true)
+                        {
+                            Movement(endPosition.x + distanceToMove, endPosition.z);
+                            HowToPlayComputer.SetActive(false);
+                        }
+                    }
+                }
+                else
                 {
                     Movement(endPosition.x + distanceToMove, endPosition.z);
                     HowToPlayComputer.SetActive(false);
@@ -157,21 +134,25 @@ public class Player : MonoBehaviour {
                 transform.localEulerAngles = new Vector3(0, 90, 0);
                 playerDirection = "left";
                 rayCastDirection = new Vector3(-1, 0, 0);
-                if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == false)
+                if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == true)
+                {
+                    if (hit.collider.tag == "Boulder")
+                    {
+                        hit.collider.SendMessageUpwards("TestCollision", rayCastDirection, SendMessageOptions.DontRequireReceiver);
+                        if (rayCastBoulderCheck == true)
+                        {
+                            Movement(endPosition.x - distanceToMove, endPosition.z);
+                            HowToPlayComputer.SetActive(false);
+                        }
+                    }
+                }
+                else
                 {
                     Movement(endPosition.x - distanceToMove, endPosition.z);
                     HowToPlayComputer.SetActive(false);
                 }
 
             }
-            /*if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == false)
-            {
-                if (hit.collider.tag == "Boulder")
-                {
-                    hit.transform.SendMessageUpwards("TestCollision", rayCastDirection);
-                }
-            }*/
-
 
             //Touch
 
@@ -235,6 +216,7 @@ public class Player : MonoBehaviour {
                 {
                     Movement(endPosition.x + distanceToMove, endPosition.z);
                     HowToPlayMobile.SetActive(false);
+                    
                 }
             }
             else if (horizontal == -1)
@@ -252,52 +234,65 @@ public class Player : MonoBehaviour {
         }
     }
     
-
 	public void Movement(float x, float z)
 	{
         endPosition = new Vector3(x, endPosition.y, z);
-        if (shellMode == false)
-        {
-            moveToEnd = true;
-            gameController.nextTurn();
-        }
-        else if(shellMode == true)
-        {
-            shellMode = false;
-            Instantiate(shell, endPosition, Quaternion.identity);
-            endPosition = transform.position;
-        }
+        moveToEnd = true;
+        gameController.nextTurn();
 	}
 
-    public void DropShell()
+    private void OnTriggerEnter(Collider other)
     {
-        if (shellMode == true)
-            shellMode = false;
-        else
-            shellMode = true;
-
-        Debug.Log("ShellDrop");
+        if (other.gameObject.tag == "Portal")
+        {
+            if (SceneName == "Level 1")
+            {
+                Application.LoadLevel("Level 2");
+            }
+            else if (SceneName == "Level 2")
+            {
+                Application.LoadLevel("Level 5");
+            }
+            else if (SceneName == "Level 3")
+            {
+                Application.LoadLevel("Level 5");
+            }
+            else if (SceneName == "Level 4")
+            {
+                Application.LoadLevel("Level 5");
+            }
+            else if (SceneName == "Level 5")
+            {
+                Application.LoadLevel("Level 6");
+            }
+            else if (SceneName == "Level 6")
+            {
+                Application.LoadLevel("Level 9");
+            }
+            else if (SceneName == "Level 7")
+            {
+                Application.LoadLevel("Level 8");
+            }
+            else if (SceneName == "Level 8")
+            {
+                Application.LoadLevel("Level 9");
+            }
+            else if (SceneName == "Level 9")
+            {
+                Application.LoadLevel("Level 10");
+            }
+            else if (SceneName == "Level 10")
+            {
+                Application.LoadLevel("Level 11");
+            }
+            else if (SceneName == "Level 11")
+            {
+                Application.LoadLevel("Level 12");
+            }
+            else if (SceneName == "Level 12")
+            {
+                Application.LoadLevel("Main Menu");
+            }
+        }
     }
-
-    /*if (Physics.Raycast (ray, out hit, distance)) 
-	Ray ray = new Ray (transform.position,transform.forward);
-
-			RaycastHit hit;
-			if (Physics.Raycast(ray,out hit,distance))
-			{
-				Debug.Log ("ee");
-				if (hit.collider.gameObject.layer == 9) 
-				{
-					Destroy (hit.collider.gameObject);
-				} 
-				if (hit.collider.gameObject.layer == 8) 
-				{
-					Debug.Log ("woo");
-				} 
-			}
-			else
-			{
-				endPosition = new Vector3 (endPosition.x, endPosition.y, endPosition.z + distanceToMove);
-				moveToEnd = true;
-			}*/
 }

@@ -6,8 +6,9 @@ public class Boulder : MonoBehaviour {
 
     Player playerObject;
     public LayerMask mask;
-
     public float distance;
+
+    public RaycastHit hit;
 
     // Use this for initialization
     void Start () {
@@ -21,11 +22,27 @@ public class Boulder : MonoBehaviour {
 
     public void TestCollision(Vector3 rayDirection)
     {
-        if (Physics.Raycast(transform.position, rayDirection, distance, mask) == false)
+        if (Physics.Raycast(transform.position, rayDirection,out hit, distance, mask) == false)
         {
-            gameObject.layer = 0;
+            Debug.Log("ssss");
+            playerObject.rayCastBoulderCheck = true;
         }
         else
-            gameObject.layer = 5;
+        {
+            if (hit.collider.tag == "Hole")
+            {
+                Destroy(hit.collider.gameObject,0.5f);
+                playerObject.rayCastBoulderCheck = true;
+            }
+            else
+                playerObject.rayCastBoulderCheck = false;
+        }
     }
+
+    /*void OnCollisionEnter()
+{
+    foreach (Transform child in transform) {
+        GameObject.Destroy (child.gameObject);
+    }
+}*/
 }
