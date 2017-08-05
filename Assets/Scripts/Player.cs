@@ -26,6 +26,12 @@ public class Player : MonoBehaviour
 
     public GameObject HowToPlay;
 
+    public AudioClip PlayerMove;
+    public AudioClip PlayerDie;
+
+    public static Player instance = null;
+
+
 
 
     //Placeholder for next level stuff
@@ -78,12 +84,15 @@ public class Player : MonoBehaviour
                         if (rayCastBoulderCheck == true)
                         {
                             Movement(endPosition.x, endPosition.z + distanceToMove);
+                            SoundManager.instance.PlaySingle(PlayerMove);
+
                         }
                     }
                 }
                 else
                 {
                     Movement(endPosition.x, endPosition.z + distanceToMove);
+                    SoundManager.instance.PlaySingle(PlayerMove);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.S))
@@ -100,12 +109,14 @@ public class Player : MonoBehaviour
                         if (rayCastBoulderCheck == true)
                         {
                             Movement(endPosition.x, endPosition.z - distanceToMove);
+                            SoundManager.instance.PlaySingle(PlayerMove);
                         }
                     }
                 }
                 else
                 {
                     Movement(endPosition.x, endPosition.z - distanceToMove);
+                    SoundManager.instance.PlaySingle(PlayerMove);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.D))
@@ -122,12 +133,14 @@ public class Player : MonoBehaviour
                         if (rayCastBoulderCheck == true)
                         {
                             Movement(endPosition.x + distanceToMove, endPosition.z);
+                            SoundManager.instance.PlaySingle(PlayerMove);
                         }
                     }
                 }
                 else
                 {
                     Movement(endPosition.x + distanceToMove, endPosition.z);
+                    SoundManager.instance.PlaySingle(PlayerMove);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.A))
@@ -144,12 +157,14 @@ public class Player : MonoBehaviour
                         if (rayCastBoulderCheck == true)
                         {
                             Movement(endPosition.x - distanceToMove, endPosition.z);
+                            SoundManager.instance.PlaySingle(PlayerMove);
                         }
                     }
                 }
                 else
                 {
                     Movement(endPosition.x - distanceToMove, endPosition.z);
+                    SoundManager.instance.PlaySingle(PlayerMove);
                 }
             }
 
@@ -189,8 +204,8 @@ public class Player : MonoBehaviour
                 HowToPlay.SetActive(false);
                 transform.localEulerAngles = new Vector3(0, 180, 0);
                 playerDirection = "up";
-                rayCastDirection = new Vector3(0, 0, 1);
-                if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == false)
+                rayCastDirection = new Vector3(0, 0.5f, 1);
+                if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == true)
                 {
                     if (hit.collider.tag == "Wall")
                     {
@@ -211,8 +226,8 @@ public class Player : MonoBehaviour
                 HowToPlay.SetActive(false);
                 transform.localEulerAngles = new Vector3(0, 0, 0);
                 playerDirection = "down";
-                rayCastDirection = new Vector3(0, 0, -1);
-                if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == false)
+                rayCastDirection = new Vector3(0, 0.5f, -1);
+                if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == true)
                 {
                     if (hit.collider.tag == "Wall")
                     {
@@ -255,8 +270,8 @@ public class Player : MonoBehaviour
                 HowToPlay.SetActive(false);
                 transform.localEulerAngles = new Vector3(0, 90, 0);
                 playerDirection = "left";
-                rayCastDirection = new Vector3(-1, 0, 0);
-                if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == false)
+                rayCastDirection = new Vector3(-1, 0.5f, 0);
+                if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == true)
                 {
                     if (hit.collider.tag == "Wall")
                     {
@@ -285,6 +300,7 @@ public class Player : MonoBehaviour
 
     public void Death()
     {
+        SoundManager.instance.PlaySingle(PlayerDie);
         Destroy(gameObject);
     }
 

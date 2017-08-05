@@ -1,0 +1,100 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class SoundManager : MonoBehaviour
+{
+    [Header("SoundTracks")]
+    public AudioSource Beach;                   //Drag a reference to the audio source which will play the sound effects.
+    public AudioSource Atlantis;                 //Drag a reference to the audio source which will play the music.
+    public AudioSource Cutscene;                 //Drag a reference to the audio source which will play the music.
+    public AudioSource Menu;                 //Drag a reference to the audio source which will play the music.
+
+    [Header("Sound Effects")]
+    public AudioSource PlayerMovement;                   //Drag a reference to the audio source which will play the sound effects.
+    public AudioSource Ice;                   //Drag a reference to the audio source which will play the sound effects.
+    public AudioSource Death;                   //Drag a reference to the audio source which will play the sound effects.
+    public AudioSource Bubbles;                   //Drag a reference to the audio source which will play the sound effects.
+
+    public static SoundManager instance = null;     //Allows other scripts to call functions from SoundManager.             
+
+    //Scene Detection
+    private int CurrentLevel;
+
+
+    private void Update()
+    {
+
+    }
+
+    void Awake()
+    {
+        OnLevelWasLoaded();
+        //Check if there is already an instance of SoundManager
+        if (instance == null)
+            //if not, set it to this.
+            instance = this;
+        //If instance already exists:
+        else if (instance != this)
+            //Destroy this, this enforces our singleton pattern so there can only be one instance of SoundManager.
+            Destroy(gameObject);
+
+        //Set SoundManager to DontDestroyOnLoad so that it won't be destroyed when reloading our scene.
+        DontDestroyOnLoad(gameObject);
+    }
+
+
+    
+    public void PlaySingle(AudioClip clip)
+    {
+        //Set the clip of our efxSource audio source to the clip passed in as a parameter.
+        PlayerMovement.clip = clip;
+        //Play the clip.
+        PlayerMovement.Play();
+    }
+
+
+    public void OnLevelWasLoaded()
+    {
+        CurrentLevel = SceneManager.GetActiveScene().buildIndex;
+        if (CurrentLevel >= 0 && CurrentLevel <= 1)
+        {
+            if (!Menu.isPlaying)
+            {
+                Menu.Play();              //Play this sound
+            }
+            else
+            {
+                Beach.Stop();
+                Atlantis.Stop();
+                Cutscene.Stop();
+            }
+           
+        }
+
+        if (CurrentLevel == 2)
+        {
+            Cutscene.Play();            //Play this sound
+            Menu.Stop();
+            Beach.Stop();
+            Atlantis.Stop();
+        }
+
+        if (CurrentLevel >= 3 && CurrentLevel <= 12)
+        {
+            Beach.Play();            //Play this sound
+            Menu.Stop();
+            Cutscene.Stop();
+            Atlantis.Stop();
+        }
+
+        if (CurrentLevel >= 13 && CurrentLevel <= 23)
+        {
+            Atlantis.Play();            //Play this sound
+            Menu.Stop();
+            Cutscene.Stop();
+            Beach.Stop();
+        }
+    }
+}

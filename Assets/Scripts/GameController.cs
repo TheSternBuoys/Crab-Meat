@@ -83,6 +83,7 @@ public class GameController : MonoBehaviour {
         iceAmount++;
         if(iceAmount == iceDeath)
         {
+
             player.Death();
             death = true;
         }

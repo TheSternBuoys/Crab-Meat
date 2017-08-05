@@ -8,9 +8,10 @@ public class Hazard : MonoBehaviour {
 	public bool turnOver;
 
 	public GameController gameController;
+    private Player player;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
 	{
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
     }
@@ -44,7 +45,7 @@ public class Hazard : MonoBehaviour {
         if(other.gameObject.tag == "Player")
         {
             Destroy(other.gameObject);
-            gameController.death = true;
+            player.Death();
         }
         if (other.gameObject.tag == "Wall")
         {
