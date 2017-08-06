@@ -70,7 +70,8 @@ public class GameController : MonoBehaviour {
     {
         IceAudio = GameObject.Find("Ice");
         hazards = GameObject.FindGameObjectsWithTag("Hazard");
-        player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        crabs = GameObject.FindGameObjectsWithTag("Crab");
+     //   player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
 
 	public void nextTurn()
