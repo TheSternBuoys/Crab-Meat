@@ -84,15 +84,12 @@ public class Player : MonoBehaviour
                         if (rayCastBoulderCheck == true)
                         {
                             Movement(endPosition.x, endPosition.z + distanceToMove);
-                            SoundManager.instance.PlaySingle(PlayerMove);
-
                         }
                     }
                 }
                 else
                 {
                     Movement(endPosition.x, endPosition.z + distanceToMove);
-                    SoundManager.instance.PlaySingle(PlayerMove);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.S))
@@ -109,14 +106,12 @@ public class Player : MonoBehaviour
                         if (rayCastBoulderCheck == true)
                         {
                             Movement(endPosition.x, endPosition.z - distanceToMove);
-                            SoundManager.instance.PlaySingle(PlayerMove);
                         }
                     }
                 }
                 else
                 {
                     Movement(endPosition.x, endPosition.z - distanceToMove);
-                    SoundManager.instance.PlaySingle(PlayerMove);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.D))
@@ -133,14 +128,12 @@ public class Player : MonoBehaviour
                         if (rayCastBoulderCheck == true)
                         {
                             Movement(endPosition.x + distanceToMove, endPosition.z);
-                            SoundManager.instance.PlaySingle(PlayerMove);
                         }
                     }
                 }
                 else
                 {
                     Movement(endPosition.x + distanceToMove, endPosition.z);
-                    SoundManager.instance.PlaySingle(PlayerMove);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.A))
@@ -157,14 +150,12 @@ public class Player : MonoBehaviour
                         if (rayCastBoulderCheck == true)
                         {
                             Movement(endPosition.x - distanceToMove, endPosition.z);
-                            SoundManager.instance.PlaySingle(PlayerMove);
                         }
                     }
                 }
                 else
                 {
-                    Movement(endPosition.x - distanceToMove, endPosition.z);
-                    SoundManager.instance.PlaySingle(PlayerMove);
+                    Movement(endPosition.x - distanceToMove, endPosition.z);   
                 }
             }
 
@@ -293,6 +284,7 @@ public class Player : MonoBehaviour
 
     public void Movement(float x, float z)
     {
+        SoundManager.instance.PlaySingle(PlayerMove,true);
         endPosition = new Vector3(x, endPosition.y, z);
         moveToEnd = true;
         gameController.nextTurn();
@@ -300,7 +292,7 @@ public class Player : MonoBehaviour
 
     public void Death()
     {
-        SoundManager.instance.PlaySingle(PlayerDie);
+        SoundManager.instance.PlaySingle(PlayerDie,false);
         Destroy(gameObject);
     }
 
