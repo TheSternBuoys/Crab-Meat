@@ -28,8 +28,6 @@ public class GameController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        IceAudio = GameObject.Find("Ice");
-        print(iceAmount);
         if (done == false)
         {
             if (refreshTimer > 0)
@@ -70,6 +68,7 @@ public class GameController : MonoBehaviour {
 
     void Refresh()
     {
+        IceAudio = GameObject.Find("Ice");
         hazards = GameObject.FindGameObjectsWithTag("Hazard");
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
@@ -81,16 +80,14 @@ public class GameController : MonoBehaviour {
 
     public void IncreaseIce()
     {
-        iceAmount++;
+        iceAmount += 1;
+
         if(iceAmount == iceDeath)
         {
-
             player.Death();
             death = true;
         }
-
-        iceAmount = GameObject.Find("GameManager").GetComponent<GameController>().iceAmount;
-        if (iceAmount == 1)
+       /* if (iceAmount == 1)
         {
             IceAudio.GetComponent<AudioSource>().volume = .3f;
             IceAudio.GetComponent<AudioSource>().Play();
@@ -104,7 +101,7 @@ public class GameController : MonoBehaviour {
         {
             IceAudio.GetComponent<AudioSource>().volume = 1f;
             IceAudio.GetComponent<AudioSource>().Play();
-        }
+        }*/
 
 
     }
