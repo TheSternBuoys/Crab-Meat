@@ -321,7 +321,7 @@ public class Player : MonoBehaviour
             }
             else if (SceneName == "Level 3")
             {
-                Application.LoadLevel("Level 5");
+                Application.LoadLevel("Level 4");
             }
             else if (SceneName == "Level 4")
             {
@@ -333,7 +333,7 @@ public class Player : MonoBehaviour
             }
             else if (SceneName == "Level 6")
             {
-                Application.LoadLevel("Level 8");
+                Application.LoadLevel("Level 7");
             }
             else if (SceneName == "Level 7")
             {
@@ -357,7 +357,7 @@ public class Player : MonoBehaviour
             }
             else if (SceneName == "Level 12")
             {
-                Application.LoadLevel("Level 15");
+                Application.LoadLevel("Level 13");
             }
             else if (SceneName == "Level 13")
             {
@@ -365,11 +365,11 @@ public class Player : MonoBehaviour
             }
             else if (SceneName == "Level 14")
             {
-                Application.LoadLevel("Level 14");
+                Application.LoadLevel("Level 15");
             }
             else if (SceneName == "Level 15")
             {
-                Application.LoadLevel("Level 19");
+                Application.LoadLevel("Level 16");
             }
             else if (SceneName == "Level 16")
             {
@@ -384,6 +384,10 @@ public class Player : MonoBehaviour
                 Application.LoadLevel("Level 19");
             }
             else if (SceneName == "Level 19")
+            {
+                Application.LoadLevel("Main Menu");
+            }
+            else if (SceneName == "Level 20")
             {
                 Application.LoadLevel("Main Menu");
             }
