@@ -14,20 +14,30 @@ public class GameController : MonoBehaviour {
     public bool death = false;
     public int iceAmount;
     public int iceDeath;
-    public GameObject IceAudio;
+    public AudioClip PlayerDie;
 
     private Player player;
     private float refreshTimer = 0.5f;
     private bool done = false;
 
-	// Use this for initialization
-	void Start () {
+    [Header("Ice Colour")]
+    public GameObject Player;
+    public Color color = Color.black;
+
+    // Use this for initialization
+    private void Awake()
+    {
+        
+    }
+
+    void Start () {
         turnTimer = startingTimer;
         Refresh();
     }
 	
 	// Update is called once per frame
 	void Update () {
+
         if (done == false)
         {
             if (refreshTimer > 0)
@@ -68,7 +78,6 @@ public class GameController : MonoBehaviour {
 
     void Refresh()
     {
-        IceAudio = GameObject.Find("Ice");
         hazards = GameObject.FindGameObjectsWithTag("Hazard");
         crabs = GameObject.FindGameObjectsWithTag("Crab");
      //   player = GameObject.FindWithTag("Player").GetComponent<Player>();
@@ -83,10 +92,18 @@ public class GameController : MonoBehaviour {
     {
         iceAmount += 1;
 
-        if(iceAmount == iceDeath)
+        if (iceAmount ==0)
         {
-            player.Death();
+            
+        }
+        
+
+        if(iceAmount >= iceDeath)
+        {
+            SoundManager.instance.PlaySingle(PlayerDie, false);
+            Application.LoadLevel(Application.loadedLevel);
             death = true;
+            
         }
        /* if (iceAmount == 1)
         {
