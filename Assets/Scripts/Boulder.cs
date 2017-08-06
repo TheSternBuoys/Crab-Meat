@@ -8,6 +8,9 @@ public class Boulder : MonoBehaviour {
     public LayerMask mask;
     public float distance;
     public RaycastHit hit;
+    public GameController gameController;
+    public float newPositionz;
+    public float newPositionx;
 
     private void OnTriggerEnter(Collision collision)
     {
@@ -20,11 +23,17 @@ public class Boulder : MonoBehaviour {
     // Use this for initialization
     void Start () {
         playerObject = GameObject.FindWithTag("Player").GetComponent<Player>();
+        gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-	
+	if(gameController.playersTurn == true)
+        {     
+            newPositionz = Mathf.Round(transform.position.z);
+            newPositionx = Mathf.Round(transform.position.x);
+            transform.position = new Vector3(newPositionx, transform.position.y, newPositionz);
+        }
 	}
 
     public void TestCollision(Vector3 rayDirection)

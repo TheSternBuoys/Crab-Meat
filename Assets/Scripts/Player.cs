@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public float distance;
     public float turntTimer;
     public string playerDirection;
+    public Transform rayCastChild;
     public LayerMask mask;
     public GameObject HowToPlayMobile;
     public GameObject HowToPlayComputer;
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        rayCastChild = this.gameObject.transform.GetChild(0);
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
         turntTimer = gameController.startingTimer;
         endPosition = transform.position;
@@ -76,7 +78,7 @@ public class Player : MonoBehaviour
                 transform.localEulerAngles = new Vector3(0, 180, 0);
                 playerDirection = "up";
                 rayCastDirection = new Vector3(0, 0.5f, 1);
-                if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == true)
+                if (Physics.Raycast(rayCastChild.position, rayCastDirection, out hit, distance, mask) == true)
                 {
                     if (hit.collider.tag == "Wall")
                     {
@@ -98,7 +100,7 @@ public class Player : MonoBehaviour
                 transform.localEulerAngles = new Vector3(0, 0, 0);
                 playerDirection = "down";
                 rayCastDirection = new Vector3(0, 0.5f, -1);
-                if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == true)
+                if (Physics.Raycast(rayCastChild.position, rayCastDirection, out hit, distance, mask) == true)
                 {
                     if (hit.collider.tag == "Wall")
                     {
@@ -120,7 +122,7 @@ public class Player : MonoBehaviour
                 transform.localEulerAngles = new Vector3(0, 270, 0);
                 playerDirection = "right";
                 rayCastDirection = new Vector3(1, 0.5f, 0);
-                if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == true)
+                if (Physics.Raycast(rayCastChild.position, rayCastDirection, out hit, distance, mask) == true)
                 {
                     if (hit.collider.tag == "Wall")
                     {
@@ -142,7 +144,7 @@ public class Player : MonoBehaviour
                 transform.localEulerAngles = new Vector3(0, 90, 0);
                 playerDirection = "left";
                 rayCastDirection = new Vector3(-1, 0.5f, 0);
-                if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == true)
+                if (Physics.Raycast(rayCastChild.position, rayCastDirection, out hit, distance, mask) == true)
                 {
                     if (hit.collider.tag == "Wall")
                     {
@@ -196,7 +198,7 @@ public class Player : MonoBehaviour
                 transform.localEulerAngles = new Vector3(0, 180, 0);
                 playerDirection = "up";
                 rayCastDirection = new Vector3(0, 0.5f, 1);
-                if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == true)
+                if (Physics.Raycast(rayCastChild.position, rayCastDirection, out hit, distance, mask) == true)
                 {
                     if (hit.collider.tag == "Wall")
                     {
@@ -218,7 +220,7 @@ public class Player : MonoBehaviour
                 transform.localEulerAngles = new Vector3(0, 0, 0);
                 playerDirection = "down";
                 rayCastDirection = new Vector3(0, 0.5f, -1);
-                if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == true)
+                if (Physics.Raycast(rayCastChild.position, rayCastDirection, out hit, distance, mask) == true)
                 {
                     if (hit.collider.tag == "Wall")
                     {
@@ -240,7 +242,7 @@ public class Player : MonoBehaviour
                 transform.localEulerAngles = new Vector3(0, 270, 0);
                 playerDirection = "right";
                 rayCastDirection = new Vector3(1, 0, 0);
-                if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == false)
+                if (Physics.Raycast(rayCastChild.position, rayCastDirection, out hit, distance, mask) == false)
                 {
                     if (hit.collider.tag == "Wall")
                     {
@@ -262,7 +264,7 @@ public class Player : MonoBehaviour
                 transform.localEulerAngles = new Vector3(0, 90, 0);
                 playerDirection = "left";
                 rayCastDirection = new Vector3(-1, 0.5f, 0);
-                if (Physics.Raycast(transform.position, rayCastDirection, out hit, distance, mask) == true)
+                if (Physics.Raycast(rayCastChild.position, rayCastDirection, out hit, distance, mask) == true)
                 {
                     if (hit.collider.tag == "Wall")
                     {
