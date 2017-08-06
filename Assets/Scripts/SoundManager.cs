@@ -68,26 +68,40 @@ public class SoundManager : MonoBehaviour
             {
                 Menu.Play();              //Play this sound
             }
-            else
-            {
                 Beach.Stop();
                 Atlantis.Stop();
                 Cutscene.Stop();
-            }
-           
         }
 
         if (CurrentLevel == 2)
         {
-            Cutscene.Play();            //Play this sound
-            Menu.Stop();
+            if (!Cutscene.isPlaying)
+            {
+                Cutscene.Play();              //Play this sound
+            }
             Beach.Stop();
             Atlantis.Stop();
+            Menu.Stop();
+        }
+
+        if (CurrentLevel == 23)
+        {
+            if (!Cutscene.isPlaying)
+            {
+                Cutscene.Play();              //Play this sound
+            }
+            Beach.Stop();
+            Atlantis.Stop();
+            Menu.Stop();
         }
 
         if (CurrentLevel >= 3 && CurrentLevel <= 12)
         {
-            Beach.Play();            //Play this sound
+            if (!Beach.isPlaying)
+            {
+                Beach.Play();              //Play this sound
+            }
+
             Menu.Stop();
             Cutscene.Stop();
             Atlantis.Stop();
@@ -95,7 +109,11 @@ public class SoundManager : MonoBehaviour
 
         if (CurrentLevel >= 13 && CurrentLevel <= 22)
         {
-            Atlantis.Play();            //Play this sound
+            if (!Atlantis.isPlaying)
+            {
+                Atlantis.Play();              //Play this sound
+            }
+
             Menu.Stop();
             Cutscene.Stop();
             Beach.Stop();

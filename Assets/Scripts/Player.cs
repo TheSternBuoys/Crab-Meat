@@ -165,6 +165,11 @@ public class Player : MonoBehaviour
 
             //Touch
 
+            if (horizontal != 0)
+            {
+                vertical = 0;
+            }
+
             if (Input.touchCount > 0)
             {
                 Touch myTouch = Input.touches[0];
@@ -242,7 +247,7 @@ public class Player : MonoBehaviour
                 transform.localEulerAngles = new Vector3(0, 270, 0);
                 playerDirection = "right";
                 rayCastDirection = new Vector3(1, 0, 0);
-                if (Physics.Raycast(rayCastChild.position, rayCastDirection, out hit, distance, mask) == false)
+               if (Physics.Raycast(rayCastChild.position, rayCastDirection, out hit, distance, mask) == true)
                 {
                     if (hit.collider.tag == "Wall")
                     {
@@ -386,11 +391,11 @@ public class Player : MonoBehaviour
             }
             else if (SceneName == "Level 19")
             {
-                Application.LoadLevel("Main Menu");
+                Application.LoadLevel("Level 20");
             }
             else if (SceneName == "Level 20")
             {
-                Application.LoadLevel("Main Menu");
+                Application.LoadLevel("Outro");
             }
         }
     }
