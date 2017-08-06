@@ -295,7 +295,8 @@ public class Player : MonoBehaviour
     public void Death()
     {
         SoundManager.instance.PlaySingle(PlayerDie,false);
-        Destroy(gameObject);
+        gameController.death = true;
+       // Destroy(gameObject);
     }
 
     void OnTriggerEnter(Collider other)

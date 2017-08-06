@@ -17,6 +17,8 @@ public class LoadLevel : MonoBehaviour {
     public GameObject SandBoulderHole;
     public GameObject GroundTrap;
     public GameObject iceBlock;
+    public GameObject crabVertical;
+    public GameObject crabHorizontal;
 
     public int level;
 
@@ -124,7 +126,13 @@ public class LoadLevel : MonoBehaviour {
                         case "BO":
                             currentObject = BoulderObstacle;
                             break;
-						case "G":
+                        case "CH":
+                            currentObject = crabHorizontal;
+                            break;
+                        case "CV":
+                            currentObject = crabVertical;
+                            break;
+                        case "G":
 							currentObject = grass;
 							break;
                         case "PP":

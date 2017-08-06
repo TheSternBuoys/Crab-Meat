@@ -45,7 +45,7 @@ public class Hazard : MonoBehaviour {
         if(other.gameObject.tag == "Player")
         {
             Destroy(other.gameObject);
-            player.Death();
+            gameController.death = true;
         }
         if (other.gameObject.tag == "Wall")
         {
