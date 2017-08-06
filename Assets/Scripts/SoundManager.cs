@@ -59,6 +59,17 @@ public class SoundManager : MonoBehaviour
         soundFX.Play();
     }
 
+    public void PlaySinglePitch(AudioClip clip, float pitchChange)
+    {
+        //Set the clip of our efxSource audio source to the clip passed in as a parameter.
+        soundFX.clip = clip;
+        float soundPitch = pitchChange;
+        soundFX.pitch = soundPitch;
+
+        //Play the clip.
+        soundFX.Play();
+    }
+
     public void OnLevelWasLoaded()
     {
         CurrentLevel = SceneManager.GetActiveScene().buildIndex;

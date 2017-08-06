@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-sceneSetups: []
-=======
 sceneSetups:
-- path: Assets/Scenes/Cutscenes/Outro.unity
+- path: Assets/Scenes/Levels/Level 7.unity
   isLoaded: 1
   isActive: 1
->>>>>>> c18898b58f13562d1c661a67e5255b126db07330

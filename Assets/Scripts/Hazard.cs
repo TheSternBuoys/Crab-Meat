@@ -7,6 +7,8 @@ public class Hazard : MonoBehaviour {
 	public int currentTurn;
 	public bool turnOver;
 
+    public AudioClip playerDie;
+
 	public GameController gameController;
     private Player player;
 
@@ -45,7 +47,7 @@ public class Hazard : MonoBehaviour {
         if(other.gameObject.tag == "Player")
         {
             Destroy(other.gameObject);
-            gameController.death = true;
+            gameController.Death();
         }
         if (other.gameObject.tag == "Wall")
         {

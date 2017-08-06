@@ -48,7 +48,7 @@ public class Boulder : MonoBehaviour {
             if (hit.collider.tag == "Hole")
             {
                 Debug.Log("HoleDestroyed");
-                Destroy(hit.collider.gameObject,0.7f);
+                Destroy(hit.collider.gameObject,1.0f);
                 playerObject.rayCastBoulderCheck = true;
             }
         }

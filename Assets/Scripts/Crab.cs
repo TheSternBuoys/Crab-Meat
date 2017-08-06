@@ -119,7 +119,7 @@ public class Crab : MonoBehaviour {
         if(other.gameObject.tag == "Player")
         {
             Destroy(other.gameObject);
-            gameController.death = true;
+            gameController.Death();
         }
     }
 }

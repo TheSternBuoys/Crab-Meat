@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour {
     private bool done = false;
 
     [Header("Ice Colour")]
-    public GameObject Player;
+    public Player Player;
     public Color color = Color.black;
 
     // Use this for initialization
@@ -80,7 +80,7 @@ public class GameController : MonoBehaviour {
     {
         hazards = GameObject.FindGameObjectsWithTag("Hazard");
         crabs = GameObject.FindGameObjectsWithTag("Crab");
-     //   player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
 
 	public void nextTurn()
@@ -91,37 +91,20 @@ public class GameController : MonoBehaviour {
     public void IncreaseIce()
     {
         iceAmount += 1;
-
-        if (iceAmount ==0)
+        if (iceAmount >= iceDeath)
         {
-            
+            Death();
         }
-        
-
-        if(iceAmount >= iceDeath)
+        else
         {
-            SoundManager.instance.PlaySingle(PlayerDie, false);
-            Application.LoadLevel(Application.loadedLevel);
-            death = true;
-            
+            player.IceSound(iceAmount);
         }
-       /* if (iceAmount == 1)
-        {
-            IceAudio.GetComponent<AudioSource>().volume = .3f;
-            IceAudio.GetComponent<AudioSource>().Play();
-        }
-        if (iceAmount == 2)
-        {
-            IceAudio.GetComponent<AudioSource>().volume = .6f;
-            IceAudio.GetComponent<AudioSource>().Play();
-        }
-        if (iceAmount == 3)
-        {
-            IceAudio.GetComponent<AudioSource>().volume = 1f;
-            IceAudio.GetComponent<AudioSource>().Play();
-        }*/
+    }
 
-
+    public void Death()
+    {
+        death = true;
+        SoundManager.instance.PlaySingle(PlayerDie, false);
     }
 
     public void Reset()

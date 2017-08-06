@@ -15,27 +15,25 @@ public class Player : MonoBehaviour
     public LayerMask mask;
     public GameObject HowToPlayMobile;
     public GameObject HowToPlayComputer;
+    public GameObject cloud;
     public RaycastHit hit;
     public bool rayCastBoulderCheck;
-
-    Vector3 rayCastDirection;
-    private bool moveToEnd = false;
-    private Vector3 endPosition;
-    private GameController gameController;
-
-    private Vector2 touchOrigin = -Vector2.one;
 
     public GameObject HowToPlay;
 
     public AudioClip PlayerMove;
-    public AudioClip PlayerDie;
+    public AudioClip iceCrack;
+    public AudioClip wallBump;
 
     public static Player instance = null;
 
+    private bool moveToEnd = false;
+    private Vector3 endPosition;
+    private GameController gameController;
+    private Vector2 touchOrigin = -Vector2.one;
+    Vector3 rayCastDirection;
 
-
-
-    //Placeholder for next level stuff
+    //Placeholder for next level
     string SceneName;
 
     // Use this for initialization
@@ -87,6 +85,8 @@ public class Player : MonoBehaviour
                         {
                             Movement(endPosition.x, endPosition.z + distanceToMove);
                         }
+                        else
+                            SoundManager.instance.PlaySingle(wallBump, false);
                     }
                 }
                 else
@@ -109,6 +109,8 @@ public class Player : MonoBehaviour
                         {
                             Movement(endPosition.x, endPosition.z - distanceToMove);
                         }
+                        else
+                            SoundManager.instance.PlaySingle(wallBump, false);
                     }
                 }
                 else
@@ -131,6 +133,8 @@ public class Player : MonoBehaviour
                         {
                             Movement(endPosition.x + distanceToMove, endPosition.z);
                         }
+                        else
+                            SoundManager.instance.PlaySingle(wallBump, false);
                     }
                 }
                 else
@@ -153,6 +157,8 @@ public class Player : MonoBehaviour
                         {
                             Movement(endPosition.x - distanceToMove, endPosition.z);
                         }
+                        else
+                        SoundManager.instance.PlaySingle(wallBump, false);
                     }
                 }
                 else
@@ -212,6 +218,8 @@ public class Player : MonoBehaviour
                         {
                             Movement(endPosition.x, endPosition.z + distanceToMove);
                         }
+                        else
+                        SoundManager.instance.PlaySingle(wallBump, false);
                     }
                 }
                 else
@@ -234,6 +242,8 @@ public class Player : MonoBehaviour
                         {
                             Movement(endPosition.x, endPosition.z - distanceToMove);
                         }
+                        else
+                        SoundManager.instance.PlaySingle(wallBump, false);
                     }
                 }
                 else
@@ -256,6 +266,8 @@ public class Player : MonoBehaviour
                         {
                             Movement(endPosition.x + distanceToMove, endPosition.z);
                         }
+                        else
+                        SoundManager.instance.PlaySingle(wallBump, false);
                     }
                 }
                 else
@@ -278,6 +290,8 @@ public class Player : MonoBehaviour
                         {
                             Movement(endPosition.x - distanceToMove, endPosition.z);
                         }
+                        else
+                        SoundManager.instance.PlaySingle(wallBump, false);
                     }
                 }
                 else
@@ -292,6 +306,7 @@ public class Player : MonoBehaviour
     public void Movement(float x, float z)
     {
         SoundManager.instance.PlaySingle(PlayerMove,true);
+        Instantiate(cloud, transform.position, Quaternion.identity);
         endPosition = new Vector3(x, endPosition.y, z);
         moveToEnd = true;
         gameController.nextTurn();
@@ -299,17 +314,35 @@ public class Player : MonoBehaviour
 
     public void Death()
     {
-        SoundManager.instance.PlaySingle(PlayerDie,false);
-        gameController.death = true;
-       // Destroy(gameObject);
+        gameController.Death();
+        Destroy(gameObject);
+    }
+
+    public void IceSound(int iceAmount)
+    {
+        float pitchChange = 1;
+        if(iceAmount == 1)
+           pitchChange = 0.7f ;
+        if (iceAmount == 2)
+            pitchChange = 0.8f;
+        if (iceAmount == 3)
+            pitchChange = 0.9f;
+        SoundManager.instance.PlaySinglePitch(iceCrack, pitchChange);
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "IceBlock")
         {
-            gameController.IncreaseIce();
-            
+            if (gameController.iceAmount == 3)
+            {
+                Destroy(other.transform.parent.gameObject);
+                Death();
+            }
+            else
+            {
+                gameController.IncreaseIce();
+            }
         }
         else
         {
