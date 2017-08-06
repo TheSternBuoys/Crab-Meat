@@ -29,6 +29,7 @@ public class GameController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         IceAudio = GameObject.Find("Ice");
+        print(iceAmount);
         if (done == false)
         {
             if (refreshTimer > 0)

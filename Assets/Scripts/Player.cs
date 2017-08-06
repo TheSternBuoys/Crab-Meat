@@ -309,6 +309,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.tag == "IceBlock")
         {
             gameController.IncreaseIce();
+            
         }
         else
         {
