@@ -12,10 +12,10 @@ public class SoundManager : MonoBehaviour
     public AudioSource Menu;                 //Drag a reference to the audio source which will play the music.
 
     [Header("Sound Effects")]
-    public AudioSource PlayerMovement;                   //Drag a reference to the audio source which will play the sound effects.
-    public AudioSource Ice;                   //Drag a reference to the audio source which will play the sound effects.
-    public AudioSource Death;                   //Drag a reference to the audio source which will play the sound effects.
-    public AudioSource Bubbles;                   //Drag a reference to the audio source which will play the sound effects.
+    public AudioSource soundFX;             //Drag a reference to the audio source which will play the sound effects.
+
+    public float minPitch;
+    public float maxPitch;
 
     public static SoundManager instance = null;     //Allows other scripts to call functions from SoundManager.             
 
@@ -46,14 +46,18 @@ public class SoundManager : MonoBehaviour
 
 
     
-    public void PlaySingle(AudioClip clip)
+    public void PlaySingle(AudioClip clip, bool pitchChange)
     {
         //Set the clip of our efxSource audio source to the clip passed in as a parameter.
-        PlayerMovement.clip = clip;
+        soundFX.clip = clip;
+        if(pitchChange == true)
+        {
+            float soundPitch = Random.Range(minPitch, maxPitch);
+            soundFX.pitch = soundPitch;
+        }
         //Play the clip.
-        PlayerMovement.Play();
+        soundFX.Play();
     }
-
 
     public void OnLevelWasLoaded()
     {
