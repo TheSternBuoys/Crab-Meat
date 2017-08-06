@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
-    [Header("SoundTracks")]
+    [Header("Sound Tracks")]
     public AudioSource Beach;                   //Drag a reference to the audio source which will play the sound effects.
     public AudioSource Atlantis;                 //Drag a reference to the audio source which will play the music.
     public AudioSource Cutscene;                 //Drag a reference to the audio source which will play the music.
@@ -89,7 +89,7 @@ public class SoundManager : MonoBehaviour
             Atlantis.Stop();
         }
 
-        if (CurrentLevel >= 13 && CurrentLevel <= 23)
+        if (CurrentLevel >= 13 && CurrentLevel <= 22)
         {
             Atlantis.Play();            //Play this sound
             Menu.Stop();
