@@ -61,7 +61,7 @@ public class Crab : MonoBehaviour {
                     Movement(endPosition.x - distanceToMove, endPosition.z);
                 }
             }
-            if (direction == "right")
+            else if (direction == "right")
             {
                 transform.localEulerAngles = new Vector3(0, 0, 0);
                 rayCastDirection = new Vector3(1, 0.5f, 0);
@@ -90,7 +90,7 @@ public class Crab : MonoBehaviour {
                     Movement(endPosition.x, endPosition.z + distanceToMove);
                 }
             }
-            if (direction == "down")
+            else if (direction == "down")
             {
                 transform.localEulerAngles = new Vector3(0, 90, 0);
                 rayCastDirection = new Vector3(0, 0.5f, -1);

@@ -18,6 +18,7 @@ public class LoadLevel : MonoBehaviour {
     public GameObject GroundTrap;
     public GameObject iceBlock;
     public GameObject crabVertical;
+	public GameObject crown;
     public GameObject crabHorizontal;
 
     public int level;
@@ -138,6 +139,9 @@ public class LoadLevel : MonoBehaviour {
                         case "PP":
                             currentObject = PressurePlate;
                             break;
+						case "CR":
+							currentObject = crown;
+							break;
                         default:
 							currentObject = null;
 							break;
