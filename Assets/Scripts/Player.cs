@@ -64,6 +64,110 @@ public class Player : MonoBehaviour
         }
     }
 
+    void UpPC()
+    {
+        int horizontal = 0;     //Used to store the horizontal move direction.
+        int vertical = 0;       //Used to store the vertical move direction.
+
+        HowToPlay.SetActive(false);
+        transform.localEulerAngles = new Vector3(0, 180, 0);
+        playerDirection = "up";
+        rayCastDirection = new Vector3(0, 0.5f, 1);
+        if (Physics.Raycast(rayCastChild.position, rayCastDirection, out hit, distance, mask) == true)
+        {
+            if (hit.collider.tag == "Wall")
+            {
+                hit.collider.SendMessageUpwards("TestCollision", rayCastDirection, SendMessageOptions.DontRequireReceiver);
+                if (rayCastBoulderCheck == true)
+                {
+                    Movement(endPosition.x, endPosition.z + distanceToMove);
+                }
+                else
+                    SoundManager.instance.PlaySingle(wallBump, false);
+            }
+        }
+        else
+        {
+            Movement(endPosition.x, endPosition.z + distanceToMove);
+        }
+    }
+
+    void DownPC()
+    {
+        HowToPlay.SetActive(false);
+        transform.localEulerAngles = new Vector3(0, 0, 0);
+        playerDirection = "down";
+        rayCastDirection = new Vector3(0, 0.5f, -1);
+        if (Physics.Raycast(rayCastChild.position, rayCastDirection, out hit, distance, mask) == true)
+        {
+            if (hit.collider.tag == "Wall")
+            {
+                hit.collider.SendMessageUpwards("TestCollision", rayCastDirection, SendMessageOptions.DontRequireReceiver);
+                if (rayCastBoulderCheck == true)
+                {
+                    Movement(endPosition.x, endPosition.z - distanceToMove);
+                }
+                else
+                    SoundManager.instance.PlaySingle(wallBump, false);
+            }
+        }
+        else
+        {
+            Movement(endPosition.x, endPosition.z - distanceToMove);
+        }
+    }
+
+    void RightPC()
+    {
+        HowToPlay.SetActive(false);
+        transform.localEulerAngles = new Vector3(0, 270, 0);
+        playerDirection = "right";
+        rayCastDirection = new Vector3(1, 0.5f, 0);
+        if (Physics.Raycast(rayCastChild.position, rayCastDirection, out hit, distance, mask) == true)
+        {
+            if (hit.collider.tag == "Wall")
+            {
+                hit.collider.SendMessageUpwards("TestCollision", rayCastDirection, SendMessageOptions.DontRequireReceiver);
+                if (rayCastBoulderCheck == true)
+                {
+                    Movement(endPosition.x + distanceToMove, endPosition.z);
+                }
+                else
+                    SoundManager.instance.PlaySingle(wallBump, false);
+            }
+        }
+        else
+        {
+            Movement(endPosition.x + distanceToMove, endPosition.z);
+        }
+    }
+
+    void LeftPC()
+    {
+
+        HowToPlay.SetActive(false);
+        transform.localEulerAngles = new Vector3(0, 90, 0);
+        playerDirection = "left";
+        rayCastDirection = new Vector3(-1, 0.5f, 0);
+        if (Physics.Raycast(rayCastChild.position, rayCastDirection, out hit, distance, mask) == true)
+        {
+            if (hit.collider.tag == "Wall")
+            {
+                hit.collider.SendMessageUpwards("TestCollision", rayCastDirection, SendMessageOptions.DontRequireReceiver);
+                if (rayCastBoulderCheck == true)
+                {
+                    Movement(endPosition.x - distanceToMove, endPosition.z);
+                }
+                else
+                    SoundManager.instance.PlaySingle(wallBump, false);
+            }
+        }
+        else
+        {
+            Movement(endPosition.x - distanceToMove, endPosition.z);
+        }
+    }
+
     void Update()
     {
         print(EnableInput);
@@ -79,99 +183,19 @@ public class Player : MonoBehaviour
                 //keycode
                 if (Input.GetKeyDown(KeyCode.W))
                 {
-                    HowToPlay.SetActive(false);
-                    transform.localEulerAngles = new Vector3(0, 180, 0);
-                    playerDirection = "up";
-                    rayCastDirection = new Vector3(0, 0.5f, 1);
-                    if (Physics.Raycast(rayCastChild.position, rayCastDirection, out hit, distance, mask) == true)
-                    {
-                        if (hit.collider.tag == "Wall")
-                        {
-                            hit.collider.SendMessageUpwards("TestCollision", rayCastDirection, SendMessageOptions.DontRequireReceiver);
-                            if (rayCastBoulderCheck == true)
-                            {
-                                Movement(endPosition.x, endPosition.z + distanceToMove);
-                            }
-                            else
-                                SoundManager.instance.PlaySingle(wallBump, false);
-                        }
-                    }
-                    else
-                    {
-                        Movement(endPosition.x, endPosition.z + distanceToMove);
-                    }
+                    Invoke("UpPC", .2f);
                 }
                 else if (Input.GetKeyDown(KeyCode.S))
                 {
-                    HowToPlay.SetActive(false);
-                    transform.localEulerAngles = new Vector3(0, 0, 0);
-                    playerDirection = "down";
-                    rayCastDirection = new Vector3(0, 0.5f, -1);
-                    if (Physics.Raycast(rayCastChild.position, rayCastDirection, out hit, distance, mask) == true)
-                    {
-                        if (hit.collider.tag == "Wall")
-                        {
-                            hit.collider.SendMessageUpwards("TestCollision", rayCastDirection, SendMessageOptions.DontRequireReceiver);
-                            if (rayCastBoulderCheck == true)
-                            {
-                                Movement(endPosition.x, endPosition.z - distanceToMove);
-                            }
-                            else
-                                SoundManager.instance.PlaySingle(wallBump, false);
-                        }
-                    }
-                    else
-                    {
-                        Movement(endPosition.x, endPosition.z - distanceToMove);
-                    }
+                    Invoke("DownPC", .2f);
                 }
                 else if (Input.GetKeyDown(KeyCode.D))
                 {
-                    HowToPlay.SetActive(false);
-                    transform.localEulerAngles = new Vector3(0, 270, 0);
-                    playerDirection = "right";
-                    rayCastDirection = new Vector3(1, 0.5f, 0);
-                    if (Physics.Raycast(rayCastChild.position, rayCastDirection, out hit, distance, mask) == true)
-                    {
-                        if (hit.collider.tag == "Wall")
-                        {
-                            hit.collider.SendMessageUpwards("TestCollision", rayCastDirection, SendMessageOptions.DontRequireReceiver);
-                            if (rayCastBoulderCheck == true)
-                            {
-                                Movement(endPosition.x + distanceToMove, endPosition.z);
-                            }
-                            else
-                                SoundManager.instance.PlaySingle(wallBump, false);
-                        }
-                    }
-                    else
-                    {
-                        Movement(endPosition.x + distanceToMove, endPosition.z);
-                    }
+                    Invoke("RightPC", .2f);
                 }
                 else if (Input.GetKeyDown(KeyCode.A))
                 {
-                    HowToPlay.SetActive(false);
-                    transform.localEulerAngles = new Vector3(0, 90, 0);
-                    playerDirection = "left";
-                    rayCastDirection = new Vector3(-1, 0.5f, 0);
-                    if (Physics.Raycast(rayCastChild.position, rayCastDirection, out hit, distance, mask) == true)
-                    {
-                        if (hit.collider.tag == "Wall")
-                        {
-                            hit.collider.SendMessageUpwards("TestCollision", rayCastDirection, SendMessageOptions.DontRequireReceiver);
-                            if (rayCastBoulderCheck == true)
-                            {
-                                Movement(endPosition.x - distanceToMove, endPosition.z);
-                            }
-                            else
-                                SoundManager.instance.PlaySingle(wallBump, false);
-                        }
-                    }
-                    else
-                    {
-                        Movement(endPosition.x - distanceToMove, endPosition.z);
-                    }
+                    Invoke("LeftPC", .2f);
                 }
 
                 //HowToPlayComputer.SetActive(false);
