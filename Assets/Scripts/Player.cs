@@ -183,19 +183,19 @@ public class Player : MonoBehaviour
                 //keycode
                 if (Input.GetKeyDown(KeyCode.W))
                 {
-                    Invoke("UpPC", .2f);
+					Invoke("UpPC",0f);
                 }
                 else if (Input.GetKeyDown(KeyCode.S))
                 {
-                    Invoke("DownPC", .2f);
+					Invoke("DownPC",0f);
                 }
                 else if (Input.GetKeyDown(KeyCode.D))
                 {
-                    Invoke("RightPC", .2f);
+					Invoke("RightPC",0f);
                 }
                 else if (Input.GetKeyDown(KeyCode.A))
                 {
-                    Invoke("LeftPC", .2f);
+					Invoke("LeftPC",0f);
                 }
 
                 //HowToPlayComputer.SetActive(false);

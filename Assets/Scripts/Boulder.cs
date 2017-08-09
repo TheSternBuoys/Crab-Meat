@@ -11,6 +11,7 @@ public class Boulder : MonoBehaviour {
     public GameController gameController;
     public float newPositionz;
     public float newPositionx;
+	public float destroyHoleTimer;
 
     private void OnTriggerEnter(Collision collision)
     {
@@ -48,7 +49,7 @@ public class Boulder : MonoBehaviour {
             if (hit.collider.tag == "Hole")
             {
                 Debug.Log("HoleDestroyed");
-                Destroy(hit.collider.gameObject,1.0f);
+				Destroy(hit.collider.gameObject,destroyHoleTimer);
                 playerObject.rayCastBoulderCheck = true;
             }
         }
