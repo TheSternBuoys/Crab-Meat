@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: 64bea488f9129754486cfb401e70855a
-timeCreated: 1502063203
-licenseType: Pro
+guid: 9b0bfa80e85eadb4ca55f979ff3167ff
+timeCreated: 1502362042
+licenseType: Free
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 21
   fileIDToRecycleName:
     100000: //RootNode
     100002: default
@@ -34,6 +34,7 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -41,7 +42,10 @@ ModelImporter:
     globalScale: 0.066667
     meshCompression: 0
     addColliders: 0
+    importVisibility: 1
     importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -57,6 +61,7 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 4
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
